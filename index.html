@@ -1,256 +1,691 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f8f3e9">
-<title>Hari Sangari & Jagathish | Wedding Invitation</title>
-<meta name="description" content="With love and blessings, join Hari Sangari and Jagathish as they begin their forever on 16 November 2026.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+Tamil:wght@400;500;600&display=swap" rel="stylesheet">
+
+<title>A Beautiful Journey</title>
+
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400&display=swap');
+
 :root {
-  --ivory: #fbf7ef;
-  --gold: #ad8950;
-  --deep-gold: #80612f;
-  --ink: #43372b;
-  --muted: #796c5c;
+    --wine: #4A1028;
+    --burgundy: #2A101B;
+    --gold: #E8D2A6;
+    --ivory: #FFF5E8;
+    --dark: #120B10;
 }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--dark);
+    color: var(--ivory);
+}
+
 body {
-  margin: 0;
-  background: var(--ivory);
-  color: var(--ink);
-  font-family: "Cormorant Garamond", "Noto Serif Tamil", serif;
+    font-family: 'Montserrat', sans-serif;
 }
-body, button { -webkit-tap-highlight-color: transparent; }
-.hero {
-  min-height: 100svh;
-  padding: 28px 18px;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  overflow: hidden;
-  position: relative;
-  background:
-    radial-gradient(ellipse at center, #fffdf8 0%, #f8f0e2 65%, #eee0c7 100%);
+
+/* FULL-SCREEN GARDEN */
+
+.garden {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(12, 7, 13, .40),
+            rgba(25, 7, 17, .18) 45%,
+            rgba(10, 5, 10, .90)
+        ),
+        url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2200&q=90')
+        center center / cover no-repeat;
+
+    transform: scale(1.04);
+    transition: transform 12s cubic-bezier(.2,.6,.2,1);
 }
-.frame {
-  width: min(100%, 700px);
-  padding: 50px 22px;
-  border: 1px solid #c6a66f;
-  outline: 1px solid #d9c59f;
-  outline-offset: -8px;
-  animation: appear 1.5s ease both;
+
+.garden::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(
+            ellipse at 50% 50%,
+            transparent 10%,
+            rgba(18, 11, 16, .15) 45%,
+            rgba(18, 11, 16, .85) 100%
+        );
+    pointer-events: none;
 }
-.ornament { color: var(--gold); font-size: 27px; letter-spacing: 9px; }
+
+/* CINEMATIC COLOR GRADING */
+
+.color-grade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(42, 16, 27, .25),
+        rgba(18, 11, 16, .12) 35%,
+        rgba(18, 11, 16, .72)
+    );
+    pointer-events: none;
+}
+
+/* LIGHT MIST */
+
+.mist {
+    position: absolute;
+    width: 150%;
+    height: 35%;
+    left: -25%;
+    bottom: 8%;
+    background: radial-gradient(
+        ellipse,
+        rgba(255, 235, 204, .12),
+        rgba(255, 235, 204, .035) 40%,
+        transparent 70%
+    );
+    filter: blur(30px);
+    opacity: .45;
+    animation: mistMove 18s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes mistMove {
+    from {
+        transform: translateX(-5%) translateY(0);
+    }
+    to {
+        transform: translateX(5%) translateY(-12px);
+    }
+}
+
+/* GOLDEN PARTICLES */
+
+.particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 10px rgba(232, 210, 166, .8);
+    opacity: 0;
+    animation: floatParticle 8s linear infinite;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(25px);
+        opacity: 0;
+    }
+    20% { opacity: .5; }
+    80% { opacity: .3; }
+    100% {
+        transform: translateY(-150px);
+        opacity: 0;
+    }
+}
+
+/* PATHWAY LIGHTS */
+
+.pathway-lights {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.path-light {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #FFE9BB;
+    box-shadow:
+        0 0 12px 4px rgba(232, 210, 166, .6),
+        0 0 35px 12px rgba(232, 210, 166, .18);
+
+    opacity: .15;
+    transition:
+        opacity 1.4s ease,
+        box-shadow 1.4s ease;
+}
+
+.path-light.lit {
+    opacity: 1;
+    box-shadow:
+        0 0 14px 5px rgba(255, 225, 165, .85),
+        0 0 45px 18px rgba(232, 210, 166, .3);
+}
+
+/* LANTERNS */
+
+.lantern {
+    position: absolute;
+    width: 42px;
+    height: 58px;
+    border: 1px solid rgba(232, 210, 166, .55);
+    border-radius: 7px 7px 11px 11px;
+
+    background: linear-gradient(
+        180deg,
+        rgba(255, 230, 183, .06),
+        rgba(255, 194, 104, .30),
+        rgba(255, 229, 183, .04)
+    );
+
+    box-shadow: 0 0 22px rgba(232, 210, 166, .08);
+    cursor: pointer;
+    z-index: 5;
+
+    transition:
+        box-shadow 1s ease,
+        background 1s ease,
+        transform .3s ease;
+}
+
+.lantern::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 7px;
+    top: -6px;
+    left: 10px;
+    border: 1px solid rgba(232, 210, 166, .7);
+    border-radius: 3px;
+}
+
+.lantern::after {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #FFF0D0;
+    left: 19px;
+    top: 26px;
+    box-shadow: 0 0 14px 8px rgba(255, 219, 153, .35);
+}
+
+.lantern.active {
+    background: rgba(255, 215, 148, .4);
+    box-shadow:
+        0 0 30px 10px rgba(232, 210, 166, .35),
+        0 0 80px 25px rgba(232, 210, 166, .15);
+    transform: scale(1.08);
+}
+
+/* PLACE LANTERNS IN PERSPECTIVE */
+
+.lantern.one {
+    left: 17%;
+    top: 49%;
+    transform: scale(.65);
+}
+
+.lantern.two {
+    left: 76%;
+    top: 47%;
+    transform: scale(.7);
+}
+
+.lantern.three {
+    left: 29%;
+    top: 64%;
+    transform: scale(.9);
+}
+
+.lantern.four {
+    left: 65%;
+    top: 61%;
+    transform: scale(.9);
+}
+
+/* INTRO OVERLAY */
+
+.intro {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    z-index: 10;
+    padding: 24px;
+
+    background: rgba(18, 11, 16, .25);
+    transition: opacity 1.5s ease;
+}
+
 .eyebrow {
-  margin-top: 22px;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 13px;
-  color: var(--deep-gold);
+    font-size: 9px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: .85;
+    margin-bottom: 22px;
 }
-h1 {
-  margin: 28px 0 14px;
-  font-weight: 500;
-  font-size: clamp(42px, 9vw, 76px);
-  line-height: .98;
-  color: #82653a;
+
+.title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(38px, 7vw, 76px);
+    line-height: 1.1;
+    letter-spacing: .5px;
+
+    color: var(--gold);
+    text-shadow: 0 0 35px rgba(232, 210, 166, .18);
+
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
 }
-.ampersand { display: block; font-size: 35px; font-style: italic; margin: 12px 0; }
-.tamil { font-family: "Noto Serif Tamil", serif; line-height: 1.9; }
-.intro { font-size: 20px; line-height: 1.7; max-width: 480px; margin: 20px auto; }
-.date {
-  margin: 28px 0 8px;
-  color: var(--deep-gold);
-  letter-spacing: 3px;
-  font-size: 19px;
+
+.title.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
-.small { color: var(--muted); font-size: 15px; }
-.btn {
-  display: inline-block;
-  margin: 12px 5px 0;
-  padding: 12px 22px;
-  border: 1px solid var(--gold);
-  color: var(--deep-gold);
-  text-decoration: none;
-  background: transparent;
-  font: inherit;
-  font-size: 17px;
-  cursor: pointer;
+
+.subtitle {
+    margin-top: 22px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(255, 245, 232, .85);
+    opacity: 0;
+    transition: opacity 2s ease 1s;
 }
-.btn:hover { background: #efe3cd; }
-section { padding: 66px 20px; text-align: center; }
-.section-inner { max-width: 760px; margin: auto; }
-.section-title {
-  color: var(--deep-gold);
-  font-size: clamp(32px, 6vw, 47px);
-  font-weight: 500;
-  margin: 0 0 12px;
+
+.subtitle.visible {
+    opacity: 1;
 }
-.rule { width: 75px; height: 1px; background: var(--gold); margin: 20px auto; }
-.message { font-size: 20px; line-height: 1.9; }
-.countdown {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin: 28px auto;
+
+/* INTERACTION PROMPT */
+
+.prompt {
+    position: absolute;
+    bottom: 12%;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+
+    z-index: 12;
+    text-align: center;
+    padding: 20px;
+
+    transition: opacity 1s ease;
 }
-.unit {
-  min-width: 78px;
-  padding: 15px 10px;
-  border: 1px solid #d5c09b;
-  background: rgba(255,255,255,.48);
+
+.prompt p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 1px;
 }
-.number { font-size: 35px; color: var(--deep-gold); display: block; }
-.unit-label { font-size: 13px; color: var(--muted); letter-spacing: 1px; }
-.photo-placeholder {
-  margin: 28px auto 0;
-  max-width: 430px;
-  min-height: 260px;
-  padding: 35px 20px;
-  border: 1px solid #c9ad7d;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(145deg, #eee0c8, #fffaf1, #e6d4b4);
+
+.touch-hint {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: rgba(255, 245, 232, .8);
+    text-transform: uppercase;
+    animation: breathe 2.5s ease-in-out infinite;
 }
-.photo-placeholder p { line-height: 1.8; font-size: 18px; }
-.note { font-size: 14px; color: var(--muted); }
-footer {
-  padding: 32px 18px;
-  text-align: center;
-  background: #eee3d1;
-  color: var(--deep-gold);
-  line-height: 1.8;
+
+@keyframes breathe {
+    0%, 100% { opacity: .55; }
+    50% { opacity: 1; }
 }
-@keyframes appear {
-  from { opacity: 0; transform: translateY(18px); }
-  to { opacity: 1; transform: translateY(0); }
+
+/* BUTTON */
+
+.begin-btn {
+    margin-top: 28px;
+    padding: 15px 29px;
+
+    color: var(--gold);
+    background: rgba(18, 11, 16, .35);
+    border: 1px solid rgba(232, 210, 166, .65);
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+        opacity 1.5s ease,
+        background .4s ease,
+        box-shadow .4s ease;
 }
+
+.begin-btn.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.begin-btn:hover {
+    background: rgba(232, 210, 166, .12);
+    box-shadow: 0 0 30px rgba(232, 210, 166, .12);
+}
+
+/* LIGHT SWEEP */
+
+.light-sweep {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -50%;
+    width: 30%;
+    transform: skewX(-18deg);
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 231, 183, .22),
+        transparent
+    );
+
+    pointer-events: none;
+    opacity: 0;
+    z-index: 8;
+}
+
+.light-sweep.run {
+    animation: sweep 2.2s ease-in-out forwards;
+}
+
+@keyframes sweep {
+    0% {
+        left: -50%;
+        opacity: 0;
+    }
+    25% { opacity: 1; }
+    100% {
+        left: 130%;
+        opacity: 0;
+    }
+}
+
+/* STARTED STATE */
+
+.garden.started {
+    transform: scale(1.16);
+}
+
+.hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+    .garden {
+        background-position: center;
+    }
+
+    .lantern {
+        width: 32px;
+        height: 46px;
+    }
+
+    .lantern.one { left: 13%; }
+    .lantern.two { left: 78%; }
+
+    .prompt {
+        bottom: 9%;
+    }
+
+    .eyebrow {
+        letter-spacing: 3px;
+    }
+
+    .begin-btn {
+        padding: 14px 22px;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; }
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
 }
 </style>
 </head>
+
 <body>
 
-<header class="hero" id="home">
-  <div class="frame">
-    <div class="ornament">✧ ❦ ✧</div>
-    <p class="eyebrow">Together with our families</p>
-    <p class="tamil">இறைவன் அருளுடனும், குடும்பத்தினரின் அன்புடனும்</p>
+<main class="garden" id="garden">
 
-    <h1>Hari Sangari</h1>
-    <span class="ampersand">&</span>
-    <h1>Jagathish</h1>
+    <div class="color-grade"></div>
+    <div class="mist"></div>
+    <div class="particles" id="particles"></div>
+    <div class="pathway-lights" id="pathwayLights"></div>
+    <div class="light-sweep" id="lightSweep"></div>
 
-    <div class="rule"></div>
-    <p class="intro">
-      Two hearts, one beautiful journey.<br>
-      With joy in our hearts, we invite you to celebrate the beginning of our forever.
-    </p>
-    <p class="tamil">இணையும் இரு இதயங்களின் இனிய தொடக்கத்திற்கு<br>உங்கள் அன்பையும் ஆசீர்வாதத்தையும் வேண்டுகிறோம்.</p>
+    <!-- Interactive golden lanterns -->
+    <button class="lantern one" aria-label="Touch the golden lantern"></button>
+    <button class="lantern two" aria-label="Golden garden lantern"></button>
+    <button class="lantern three" aria-label="Golden garden lantern"></button>
+    <button class="lantern four" aria-label="Golden garden lantern"></button>
 
-    <p class="date">16 · NOVEMBER · 2026</p>
-    <p class="small">MONDAY · OUR WEDDING DAY</p>
-    <a class="btn" href="#countdown">Our Special Day ↓</a>
-  </div>
-</header>
+    <!-- First text reveal -->
+    <section class="intro" id="intro">
 
-<section id="countdown">
-  <div class="section-inner">
-    <h2 class="section-title">Counting Down to Forever</h2>
-    <p class="tamil">நம் இனிய நாளை நோக்கி...</p>
-    <div class="rule"></div>
-    <div class="countdown" aria-live="polite">
-      <div class="unit"><span class="number" id="days">--</span><span class="unit-label">DAYS</span></div>
-      <div class="unit"><span class="number" id="hours">--</span><span class="unit-label">HOURS</span></div>
-      <div class="unit"><span class="number" id="minutes">--</span><span class="unit-label">MINUTES</span></div>
-      <div class="unit"><span class="number" id="seconds">--</span><span class="unit-label">SECONDS</span></div>
-    </div>
-    <p class="message" id="countdown-message">Every moment brings us closer to forever.</p>
-  </div>
-</section>
+        <p class="eyebrow">A MOMENT TO REMEMBER</p>
 
-<section id="our-story" style="background:#f2e8d7">
-  <div class="section-inner">
-    <h2 class="section-title">A New Chapter Begins</h2>
-    <p class="tamil">அன்பால் இணைந்து, வாழ்வின் புதிய அத்தியாயத்தைத் தொடங்குகிறோம்.</p>
-    <div class="rule"></div>
-    <p class="message">
-      A day filled with love, laughter, family and blessings.
-      Your presence will make our celebration even more special.
-    </p>
-    <p class="tamil">உங்கள் வருகையும் வாழ்த்துகளும் எங்கள் மகிழ்ச்சியை நிறைவாக்கும்.</p>
-  </div>
-</section>
+        <h1 class="title" id="title">
+            Every once<br>
+            in a lifetime…
+        </h1>
 
-<section id="gallery">
-  <div class="section-inner">
-    <h2 class="section-title">Our Moments</h2>
-    <p class="tamil">நம் அழகான நினைவுகளுக்காக...</p>
-    <div class="photo-placeholder">
-      <div>
-        <div class="ornament">❦</div>
-        <p><strong>Hari Sangari & Jagathish</strong><br>
-        Our favourite photograph will be placed here.</p>
-        <p class="note">இந்த இடத்தில் உங்கள் ஜோடி புகைப்படத்தை பின்னர் சேர்க்கலாம்.</p>
-      </div>
-    </div>
-  </div>
-</section>
+        <p class="subtitle" id="subtitle">
+            A beautiful journey awaits
+        </p>
 
-<section id="details" style="background:#f2e8d7">
-  <div class="section-inner">
-    <h2 class="section-title">Wedding Details</h2>
-    <p class="tamil">திருமண விவரங்கள்</p>
-    <div class="rule"></div>
-    <p class="message"><strong>Monday, 16 November 2026</strong></p>
-    <p class="message">Venue and ceremony time will be announced here.</p>
-    <p class="tamil">திருமண மண்டபம் மற்றும் நேர விவரங்கள் விரைவில் சேர்க்கப்படும்.</p>
-    <p class="note">Venue details have not been provided yet.</p>
-  </div>
-</section>
+    </section>
 
-<footer>
-  <div class="ornament">✧</div>
-  <p class="tamil">அன்புடன் அழைக்கிறோம் · உங்கள் வருகையை எதிர்நோக்குகிறோம்</p>
-  <p>With love, Hari Sangari & Jagathish</p>
-  <p>16 November 2026</p>
-</footer>
+    <!-- First interaction -->
+    <section class="prompt" id="prompt">
+
+        <p>Touch the light…</p>
+
+        <span class="touch-hint">
+            Touch the golden lantern to begin
+        </span>
+
+        <button class="begin-btn" id="beginBtn">
+            Begin the journey&nbsp; →
+        </button>
+
+    </section>
+
+</main>
 
 <script>
-const weddingDate = new Date(2026, 10, 16, 0, 0, 0).getTime();
+const garden = document.getElementById('garden');
+const lanterns = document.querySelectorAll('.lantern');
+const particles = document.getElementById('particles');
+const pathwayLights = document.getElementById('pathwayLights');
+const title = document.getElementById('title');
+const subtitle = document.getElementById('subtitle');
+const prompt = document.getElementById('prompt');
+const beginBtn = document.getElementById('beginBtn');
+const lightSweep = document.getElementById('lightSweep');
 
-function updateCountdown() {
-  const remaining = weddingDate - Date.now();
-  const message = document.getElementById("countdown-message");
+let started = false;
 
-  if (remaining <= 0) {
-    ["days", "hours", "minutes", "seconds"].forEach(id => {
-      document.getElementById(id).textContent = "0";
-    });
-    message.textContent = "Today is the beginning of your forever! இனிய திருமண நாள் வாழ்த்துகள்!";
-    return;
-  }
+/* Create subtle floating golden particles */
 
-  document.getElementById("days").textContent =
-    Math.floor(remaining / 86400000);
-  document.getElementById("hours").textContent =
-    Math.floor((remaining % 86400000) / 3600000);
-  document.getElementById("minutes").textContent =
-    Math.floor((remaining % 3600000) / 60000);
-  document.getElementById("seconds").textContent =
-    Math.floor((remaining % 60000) / 1000);
+for (let i = 0; i < 24; i++) {
+    const particle = document.createElement('span');
+    particle.className = 'particle';
 
-  message.textContent = "Every moment brings us closer to forever.";
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = (35 + Math.random() * 60) + '%';
+    particle.style.animationDelay = (Math.random() * 8) + 's';
+    particle.style.animationDuration = (6 + Math.random() * 6) + 's';
+
+    particles.appendChild(particle);
 }
-updateCountdown();
-setInterval(updateCountdown, 1000);
+
+/* Create lights along the pathway */
+
+const lightPositions = [
+    [43, 48], [57, 48],
+    [39, 56], [61, 56],
+    [34, 65], [66, 65],
+    [28, 76], [72, 76],
+    [22, 88], [78, 88]
+];
+
+lightPositions.forEach(([x, y]) => {
+    const light = document.createElement('span');
+
+    light.className = 'path-light';
+    light.style.left = x + '%';
+    light.style.top = y + '%';
+
+    pathwayLights.appendChild(light);
+});
+
+/* First 2 seconds: show the garden before interaction */
+
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.querySelector('.eyebrow').style.opacity = '1';
+    }, 500);
+});
+
+/* A simple cinematic chime using Web Audio */
+
+function playChime() {
+    try {
+        const AudioContextClass =
+            window.AudioContext || window.webkitAudioContext;
+
+        if (!AudioContextClass) return;
+
+        const ctx = new AudioContextClass();
+        const now = ctx.currentTime;
+
+        [659.25, 783.99].forEach((frequency, index) => {
+            const oscillator = ctx.createOscillator();
+            const gain = ctx.createGain();
+
+            oscillator.type = 'sine';
+            oscillator.frequency.value = frequency;
+
+            const startTime = now + index * 0.16;
+
+            gain.gain.setValueAtTime(0.0001, startTime);
+            gain.gain.exponentialRampToValueAtTime(
+                0.045, startTime + 0.08
+            );
+            gain.gain.exponentialRampToValueAtTime(
+                0.0001, startTime + 1.4
+            );
+
+            oscillator.connect(gain);
+            gain.connect(ctx.destination);
+
+            oscillator.start(startTime);
+            oscillator.stop(startTime + 1.5);
+        });
+
+        setTimeout(() => ctx.close(), 2500);
+
+    } catch (error) {
+        console.log('Audio is unavailable on this device.');
+    }
+}
+
+/* Touch the lantern */
+
+lanterns.forEach((lantern) => {
+    lantern.addEventListener('click', () => {
+        if (started) return;
+        started = true;
+
+        lantern.classList.add('active');
+
+        playChime();
+
+        // Camera begins its smooth forward glide
+        garden.classList.add('started');
+
+        // Golden wave: pathway lights illuminate in sequence
+        const lights = document.querySelectorAll('.path-light');
+
+        lights.forEach((light, index) => {
+            setTimeout(() => {
+                light.classList.add('lit');
+            }, 180 + index * 170);
+        });
+
+        // Other lanterns gradually light up
+        lanterns.forEach((item, index) => {
+            setTimeout(() => {
+                item.classList.add('active');
+            }, 500 + index * 350);
+        });
+
+        // Hide the initial touch prompt
+        prompt.classList.add('hidden');
+
+        // Reveal the first message
+        setTimeout(() => {
+            lightSweep.classList.add('run');
+        }, 2200);
+
+        setTimeout(() => {
+            title.classList.add('visible');
+            subtitle.classList.add('visible');
+        }, 3000);
+
+        // Reveal the next interaction button
+        setTimeout(() => {
+            beginBtn.classList.add('visible');
+        }, 5000);
+    });
+});
+
+/* Button is a placeholder for the next scene */
+
+beginBtn.addEventListener('click', () => {
+    alert(
+        'The garden opening is complete! ' +
+        'The next scene will be designed separately.'
+    );
+});
 </script>
 
 </body>
