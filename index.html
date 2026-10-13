@@ -2,78 +2,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Wedding Invitation</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Georgia, serif;
-      color: #fff8e9;
-      background: #21130f;
-      text-align: center;
-    }
-    .invitation {
-      min-height: 100vh;
-      padding: 70px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background:
-        radial-gradient(ellipse at top, #70452f, transparent 65%),
-        linear-gradient(145deg, #20120f, #4c2920, #17100d);
-    }
-    .eyebrow {
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      font-size: 12px;
-      color: #e6c99b;
-    }
-    h1 {
-      font-size: clamp(42px, 10vw, 76px);
-      font-weight: normal;
-      margin: 25px 0;
-      color: #f4dfb7;
-    }
-    .divider {
-      width: 90px;
-      height: 1px;
-      background: #d9b77d;
-      margin: 10px auto 25px;
-    }
-    .message {
-      max-width: 440px;
-      line-height: 1.9;
-      color: #f1dfcb;
-    }
-    .date {
-      margin-top: 30px;
-      color: #e6c99b;
-      letter-spacing: 3px;
-    }
-    .note {
-      margin-top: 60px;
-      font: 12px Arial, sans-serif;
-      color: #cbb8a3;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8f3e9">
+<title>Hari Sangari & Jagathish | Wedding Invitation</title>
+<meta name="description" content="With love and blessings, join Hari Sangari and Jagathish as they begin their forever on 16 November 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+Tamil:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ivory: #fbf7ef;
+  --gold: #ad8950;
+  --deep-gold: #80612f;
+  --ink: #43372b;
+  --muted: #796c5c;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: "Cormorant Garamond", "Noto Serif Tamil", serif;
+}
+body, button { -webkit-tap-highlight-color: transparent; }
+.hero {
+  min-height: 100svh;
+  padding: 28px 18px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  background:
+    radial-gradient(ellipse at center, #fffdf8 0%, #f8f0e2 65%, #eee0c7 100%);
+}
+.frame {
+  width: min(100%, 700px);
+  padding: 50px 22px;
+  border: 1px solid #c6a66f;
+  outline: 1px solid #d9c59f;
+  outline-offset: -8px;
+  animation: appear 1.5s ease both;
+}
+.ornament { color: var(--gold); font-size: 27px; letter-spacing: 9px; }
+.eyebrow {
+  margin-top: 22px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 13px;
+  color: var(--deep-gold);
+}
+h1 {
+  margin: 28px 0 14px;
+  font-weight: 500;
+  font-size: clamp(42px, 9vw, 76px);
+  line-height: .98;
+  color: #82653a;
+}
+.ampersand { display: block; font-size: 35px; font-style: italic; margin: 12px 0; }
+.tamil { font-family: "Noto Serif Tamil", serif; line-height: 1.9; }
+.intro { font-size: 20px; line-height: 1.7; max-width: 480px; margin: 20px auto; }
+.date {
+  margin: 28px 0 8px;
+  color: var(--deep-gold);
+  letter-spacing: 3px;
+  font-size: 19px;
+}
+.small { color: var(--muted); font-size: 15px; }
+.btn {
+  display: inline-block;
+  margin: 12px 5px 0;
+  padding: 12px 22px;
+  border: 1px solid var(--gold);
+  color: var(--deep-gold);
+  text-decoration: none;
+  background: transparent;
+  font: inherit;
+  font-size: 17px;
+  cursor: pointer;
+}
+.btn:hover { background: #efe3cd; }
+section { padding: 66px 20px; text-align: center; }
+.section-inner { max-width: 760px; margin: auto; }
+.section-title {
+  color: var(--deep-gold);
+  font-size: clamp(32px, 6vw, 47px);
+  font-weight: 500;
+  margin: 0 0 12px;
+}
+.rule { width: 75px; height: 1px; background: var(--gold); margin: 20px auto; }
+.message { font-size: 20px; line-height: 1.9; }
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 28px auto;
+}
+.unit {
+  min-width: 78px;
+  padding: 15px 10px;
+  border: 1px solid #d5c09b;
+  background: rgba(255,255,255,.48);
+}
+.number { font-size: 35px; color: var(--deep-gold); display: block; }
+.unit-label { font-size: 13px; color: var(--muted); letter-spacing: 1px; }
+.photo-placeholder {
+  margin: 28px auto 0;
+  max-width: 430px;
+  min-height: 260px;
+  padding: 35px 20px;
+  border: 1px solid #c9ad7d;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #eee0c8, #fffaf1, #e6d4b4);
+}
+.photo-placeholder p { line-height: 1.8; font-size: 18px; }
+.note { font-size: 14px; color: var(--muted); }
+footer {
+  padding: 32px 18px;
+  text-align: center;
+  background: #eee3d1;
+  color: var(--deep-gold);
+  line-height: 1.8;
+}
+@keyframes appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; }
+}
+</style>
 </head>
 <body>
-  <main class="invitation">
+
+<header class="hero" id="home">
+  <div class="frame">
+    <div class="ornament">✧ ❦ ✧</div>
     <p class="eyebrow">Together with our families</p>
-    <h1>Our Wedding</h1>
-    <div class="divider"></div>
-    <p class="message">
+    <p class="tamil">இறைவன் அருளுடனும், குடும்பத்தினரின் அன்புடனும்</p>
+
+    <h1>Hari Sangari</h1>
+    <span class="ampersand">&</span>
+    <h1>Jagathish</h1>
+
+    <div class="rule"></div>
+    <p class="intro">
       Two hearts, one beautiful journey.<br>
-      We invite you to celebrate the beginning
-      of our forever.
+      With joy in our hearts, we invite you to celebrate the beginning of our forever.
     </p>
-    <p class="date">OUR SPECIAL DAY</p>
-    <p id="countdown">Our countdown begins soon</p>
-    <p class="note">With love, we invite you to be part of our story.</p>
-  </main>
+    <p class="tamil">இணையும் இரு இதயங்களின் இனிய தொடக்கத்திற்கு<br>உங்கள் அன்பையும் ஆசீர்வாதத்தையும் வேண்டுகிறோம்.</p>
+
+    <p class="date">16 · NOVEMBER · 2026</p>
+    <p class="small">MONDAY · OUR WEDDING DAY</p>
+    <a class="btn" href="#countdown">Our Special Day ↓</a>
+  </div>
+</header>
+
+<section id="countdown">
+  <div class="section-inner">
+    <h2 class="section-title">Counting Down to Forever</h2>
+    <p class="tamil">நம் இனிய நாளை நோக்கி...</p>
+    <div class="rule"></div>
+    <div class="countdown" aria-live="polite">
+      <div class="unit"><span class="number" id="days">--</span><span class="unit-label">DAYS</span></div>
+      <div class="unit"><span class="number" id="hours">--</span><span class="unit-label">HOURS</span></div>
+      <div class="unit"><span class="number" id="minutes">--</span><span class="unit-label">MINUTES</span></div>
+      <div class="unit"><span class="number" id="seconds">--</span><span class="unit-label">SECONDS</span></div>
+    </div>
+    <p class="message" id="countdown-message">Every moment brings us closer to forever.</p>
+  </div>
+</section>
+
+<section id="our-story" style="background:#f2e8d7">
+  <div class="section-inner">
+    <h2 class="section-title">A New Chapter Begins</h2>
+    <p class="tamil">அன்பால் இணைந்து, வாழ்வின் புதிய அத்தியாயத்தைத் தொடங்குகிறோம்.</p>
+    <div class="rule"></div>
+    <p class="message">
+      A day filled with love, laughter, family and blessings.
+      Your presence will make our celebration even more special.
+    </p>
+    <p class="tamil">உங்கள் வருகையும் வாழ்த்துகளும் எங்கள் மகிழ்ச்சியை நிறைவாக்கும்.</p>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="section-inner">
+    <h2 class="section-title">Our Moments</h2>
+    <p class="tamil">நம் அழகான நினைவுகளுக்காக...</p>
+    <div class="photo-placeholder">
+      <div>
+        <div class="ornament">❦</div>
+        <p><strong>Hari Sangari & Jagathish</strong><br>
+        Our favourite photograph will be placed here.</p>
+        <p class="note">இந்த இடத்தில் உங்கள் ஜோடி புகைப்படத்தை பின்னர் சேர்க்கலாம்.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="details" style="background:#f2e8d7">
+  <div class="section-inner">
+    <h2 class="section-title">Wedding Details</h2>
+    <p class="tamil">திருமண விவரங்கள்</p>
+    <div class="rule"></div>
+    <p class="message"><strong>Monday, 16 November 2026</strong></p>
+    <p class="message">Venue and ceremony time will be announced here.</p>
+    <p class="tamil">திருமண மண்டபம் மற்றும் நேர விவரங்கள் விரைவில் சேர்க்கப்படும்.</p>
+    <p class="note">Venue details have not been provided yet.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="ornament">✧</div>
+  <p class="tamil">அன்புடன் அழைக்கிறோம் · உங்கள் வருகையை எதிர்நோக்குகிறோம்</p>
+  <p>With love, Hari Sangari & Jagathish</p>
+  <p>16 November 2026</p>
+</footer>
+
+<script>
+const weddingDate = new Date(2026, 10, 16, 0, 0, 0).getTime();
+
+function updateCountdown() {
+  const remaining = weddingDate - Date.now();
+  const message = document.getElementById("countdown-message");
+
+  if (remaining <= 0) {
+    ["days", "hours", "minutes", "seconds"].forEach(id => {
+      document.getElementById(id).textContent = "0";
+    });
+    message.textContent = "Today is the beginning of your forever! இனிய திருமண நாள் வாழ்த்துகள்!";
+    return;
+  }
+
+  document.getElementById("days").textContent =
+    Math.floor(remaining / 86400000);
+  document.getElementById("hours").textContent =
+    Math.floor((remaining % 86400000) / 3600000);
+  document.getElementById("minutes").textContent =
+    Math.floor((remaining % 3600000) / 60000);
+  document.getElementById("seconds").textContent =
+    Math.floor((remaining % 60000) / 1000);
+
+  message.textContent = "Every moment brings us closer to forever.";
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+
 </body>
 </html>
