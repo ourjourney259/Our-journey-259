@@ -1,253 +1,1553 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hari Sangari & Jagathish | Wedding</title>
+<meta name="theme-color" content="#240507">
+
+<title>Jagathishraj & Hari Sangari | Wedding Invitation</title>
 
 <style>
-*{box-sizing:border-box}
-:root{--gold:#f6d68b;--cream:#fff1d6}
-body{margin:0;background:#19040a;color:var(--cream);
-font-family:Georgia,'Times New Roman',serif}
-.screen{display:none;min-height:100svh;position:relative;
-align-items:center;justify-content:center;text-align:center;
-padding:28px 18px;overflow:hidden;
-background:radial-gradient(ellipse,#65202b,#300711 65%,#150308)}
-.screen.active{display:flex;animation:fade .8s ease}
-.card{width:100%;max-width:480px;padding:28px 20px;
-border:1px solid #d7b568;outline:1px solid #79552e;
-outline-offset:5px;background:rgba(25,4,10,.48);z-index:2}
-.kicker{font-size:11px;letter-spacing:4px;color:var(--gold);line-height:2}
-h1{font-size:clamp(37px,10vw,58px);font-weight:normal;
-color:var(--gold);line-height:1.15;margin:18px 0}
-h2{font-size:clamp(29px,8vw,44px);font-weight:normal;
-color:var(--gold);margin:18px 0}
-p{font-size:16px;line-height:1.8}
-.script{font-style:italic;text-shadow:0 0 12px #e9bd6b}
-.ornament{color:var(--gold);font-size:26px;margin:16px}
-.line{height:1px;width:100px;background:var(--gold);margin:20px auto}
-button{font-family:inherit;font-size:12px;letter-spacing:1.5px;
-padding:14px 19px;min-height:48px;margin:8px 4px;
-border:1px solid var(--gold);background:linear-gradient(135deg,#ffe9b1,#bc883e);
-color:#3a0b12;cursor:pointer}
-button:focus-visible{outline:3px solid white}
-button.ghost{background:transparent;color:var(--gold)}
-.stars{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.stars i{position:absolute;width:3px;height:3px;border-radius:50%;
-background:#ffe8a1;box-shadow:0 0 10px 3px #e9ad52;
-animation:twinkle 2s infinite alternate}
-.stars i:nth-child(1){left:12%;top:20%}
-.stars i:nth-child(2){left:80%;top:18%;animation-delay:.4s}
-.stars i:nth-child(3){left:25%;top:75%;animation-delay:.7s}
-.stars i:nth-child(4){left:88%;top:65%;animation-delay:1s}
-.stars i:nth-child(5){left:50%;top:12%;animation-delay:.2s}
-.stars i:nth-child(6){left:70%;top:85%;animation-delay:.9s}
-.stars i:nth-child(7){left:8%;top:50%;animation-delay:.6s}
-.stars i:nth-child(8){left:40%;top:88%;animation-delay:1.2s}
+:root {
+  --wine: #3b070b;
+  --wine-dark: #160304;
+  --gold: #d5ad65;
+  --gold-light: #ffe5aa;
+  --cream: #fff3dc;
+}
 
-/* ROYAL CURTAINS */
-.curtain{position:absolute;z-index:4;top:0;bottom:0;width:52%;
-pointer-events:none;transition:transform 2.2s cubic-bezier(.65,0,.25,1);
-background:
-repeating-linear-gradient(90deg,rgba(20,0,5,.5) 0 7px,
-rgba(177,40,52,.35) 12px,transparent 22px),
-linear-gradient(90deg,#27030b,#8e172b 28%,#590a1b 68%,#31040d);
-box-shadow:inset 0 0 45px #150207,0 0 20px #120208}
-.curtain.left{left:0;border-right:2px solid #cda456}
-.curtain.right{right:0;border-left:2px solid #cda456}
-#opening.open .curtain.left{transform:translateX(-103%)}
-#opening.open .curtain.right{transform:translateX(103%)}
-#opening .card{opacity:0;transition:opacity .8s 1.5s}
-#opening.open .card{opacity:1}
-#opening .pull-button{position:relative;z-index:6}
-#opening.open .pull-button{display:none}
-.rope{position:absolute;z-index:5;right:10%;top:38%;height:150px;
-width:3px;background:linear-gradient(90deg,#8b612e,#ffe5a0,#8b612e);
-transform-origin:top;pointer-events:none}
-.rope:after{content:"";position:absolute;bottom:-12px;left:-7px;
-width:15px;height:18px;border-radius:45% 45% 60% 60%;
-background:linear-gradient(90deg,#9b7136,#ffe6a0,#986c2d)}
-#opening.open .rope{animation:pull .7s ease-in forwards}
-.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:22px 0}
-.countdown div{border:1px solid #b99452;padding:12px 2px;background:#26060d}
-.countdown strong{display:block;color:var(--gold);font-size:clamp(21px,5vw,29px)}
-.countdown span{font-size:9px;letter-spacing:1px}
-.bride-art{font-size:72px;filter:drop-shadow(0 0 18px #e5b66a)}
-.small{font-size:12px;letter-spacing:1px}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@keyframes twinkle{from{opacity:.2;transform:scale(.7)}to{opacity:1;transform:scale(1.5)}}
-@keyframes pull{0%{transform:rotate(0)}35%{transform:rotate(-22deg)}
-70%{transform:rotate(15deg)}100%{transform:rotate(-8deg);opacity:0}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{
-animation-duration:.01ms!important;transition-duration:.01ms!important}}
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--wine-dark);
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 4px;
+}
+
+.eyebrow {
+  color: var(--gold-light);
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.gold-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  color: var(--gold);
+  margin: 20px auto;
+}
+
+.gold-line::before,
+.gold-line::after {
+  content: "";
+  width: 45px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 22px;
+  min-height: 46px;
+  border: 1px solid var(--gold);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #ffe5a5, #bd8b42);
+  color: #280507;
+}
+
+.btn-outline {
+  background: #160304cc;
+  color: var(--gold-light);
+}
+
+/* ===================================
+   1. WELCOME SCREEN & CURTAIN
+=================================== */
+
+#intro {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at center,
+      #741d1d 0%,
+      #3d080b 50%,
+      #140203 100%
+    );
+}
+
+.stage-light {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at center,
+      #ffd16c44,
+      transparent 45%
+    );
+  pointer-events: none;
+}
+
+.curtain {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: 51%;
+  border-bottom: 7px solid #93672f;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #260306 0%,
+      #5c0911 12%,
+      #790e19 22%,
+      #370407 34%,
+      #680b14 45%,
+      #290306 55%
+    );
+
+  box-shadow:
+    inset 0 0 35px #000,
+    0 0 30px #0008;
+
+  transition:
+    transform 2s cubic-bezier(.72, 0, .15, 1);
+}
+
+.curtain::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 7px;
+  background: linear-gradient(
+    90deg,
+    #81541f,
+    #ffe4a1,
+    #966422
+  );
+}
+
+.curtain.left {
+  left: 0;
+  border-right: 2px solid var(--gold);
+}
+
+.curtain.left::after {
+  right: 0;
+}
+
+.curtain.right {
+  right: 0;
+  border-left: 2px solid var(--gold);
+}
+
+.curtain.right::after {
+  left: 0;
+}
+
+#intro.opened .curtain.left {
+  transform: translateX(-103%);
+}
+
+#intro.opened .curtain.right {
+  transform: translateX(103%);
+}
+
+.rope {
+  position: absolute;
+  z-index: 4;
+  top: 18%;
+  height: 38%;
+  width: 3px;
+
+  background: linear-gradient(
+    90deg,
+    #8c5c23,
+    #ffe6a3,
+    #8c5c23
+  );
+
+  transition: opacity .4s;
+}
+
+.rope.left {
+  left: 9%;
+}
+
+.rope.right {
+  right: 9%;
+}
+
+.rope::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: -8px;
+  width: 19px;
+  height: 30px;
+  border-radius: 45%;
+  background: linear-gradient(
+    90deg,
+    #87551c,
+    #ffdf93,
+    #87551c
+  );
+}
+
+#intro.opened .rope {
+  opacity: 0;
+}
+
+.intro-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 25px;
+  width: min(650px, 90%);
+  transition: opacity .5s;
+}
+
+.intro-content h1 {
+  color: var(--gold-light);
+  font-size: clamp(40px, 8vw, 75px);
+  font-weight: normal;
+  margin: 20px 0;
+  text-shadow: 0 0 25px #ffcc6a55;
+}
+
+.intro-content p {
+  line-height: 2;
+  letter-spacing: 3px;
+  font-size: 12px;
+}
+
+.tap-text {
+  color: var(--gold-light);
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-top: 20px;
+}
+
+#intro.opened .intro-content {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ===================================
+   2. GOLDEN PARTICLES
+=================================== */
+
+.spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffe6a0;
+  box-shadow: 0 0 12px 4px #ffca6855;
+  animation: sparkle 2s infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes sparkle {
+  from {
+    opacity: .2;
+    transform: scale(.6);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+.petal {
+  position: fixed;
+  z-index: 20;
+  top: -30px;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform:
+      translate3d(var(--drift), 110vh, 0)
+      rotate(650deg);
+    opacity: 0;
+  }
+}
+
+/* ===================================
+   3. WEDDING INVITATION
+=================================== */
+
+#invitation {
+  min-height: 100svh;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 20%,
+      #8a3b2555,
+      transparent 50%
+    ),
+    linear-gradient(
+      145deg,
+      #160304,
+      #3b080b 50%,
+      #160304
+    );
+}
+
+.flower {
+  position: absolute;
+  top: 0;
+  font-size: clamp(35px, 7vw, 75px);
+  filter: drop-shadow(0 0 8px #d5a34d66);
+}
+
+.flower.left {
+  left: 10px;
+}
+
+.flower.right {
+  right: 10px;
+  transform: scaleX(-1);
+}
+
+.invite-content {
+  position: relative;
+  z-index: 1;
+  width: min(900px, 92%);
+  margin: auto;
+  padding: 65px 0;
+  text-align: center;
+}
+
+.wedding-symbol {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 42px;
+
+  background:
+    radial-gradient(
+      circle,
+      #ffe2a044,
+      #6b171b
+    );
+
+  box-shadow: 0 0 35px #d5a14b33;
+}
+
+.invite-content h2 {
+  color: var(--gold-light);
+  font-weight: normal;
+  font-size: clamp(35px, 7vw, 72px);
+  line-height: 1.15;
+  margin: 15px 0;
+  text-shadow: 0 0 20px #ffcf7655;
+}
+
+.invited-text {
+  font-size: 12px;
+  line-height: 2;
+  letter-spacing: 2px;
+}
+
+.name-card {
+  margin: 30px auto;
+  max-width: 740px;
+  padding: 30px 12px;
+
+  border-top: 1px solid #d5aa5d99;
+  border-bottom: 1px solid #d5aa5d99;
+
+  background: #16030466;
+}
+
+.names {
+  font-size: clamp(36px, 8vw, 80px);
+  line-height: 1.2;
+  font-style: italic;
+  color: var(--gold-light);
+  overflow-wrap: anywhere;
+  text-shadow: 0 0 20px #d49a4b55;
+}
+
+.ampersand {
+  color: var(--gold);
+  font-size: 32px;
+  margin: 8px;
+}
+
+.tagline {
+  color: #f4d39a;
+  font-size: 13px;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+.detail {
+  padding: 20px 10px;
+  border: 1px solid #d5aa5d77;
+  background: #16030499;
+  overflow-wrap: anywhere;
+}
+
+.detail b {
+  display: block;
+  color: var(--gold-light);
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.detail span {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 25px 0;
+}
+
+.description {
+  max-width: 600px;
+  margin: 20px auto;
+  line-height: 1.9;
+  font-size: 14px;
+}
+
+/* ===================================
+   4. COUNTDOWN
+=================================== */
+
+.section {
+  padding: 65px 20px;
+  text-align: center;
+
+  background:
+    linear-gradient(
+      140deg,
+      #210405,
+      #39080b
+    );
+}
+
+.section.dark {
+  background: #160304;
+}
+
+.section h2 {
+  color: var(--gold-light);
+  font-size: clamp(30px, 5vw, 50px);
+  font-weight: normal;
+  margin: 15px 0;
+}
+
+.section p {
+  max-width: 650px;
+  margin: 15px auto;
+  line-height: 1.8;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 30px auto;
+}
+
+.count-box {
+  min-width: 75px;
+  padding: 17px 12px;
+  border: 1px solid #d5aa5d88;
+  background: #16030477;
+}
+
+.count-box strong {
+  display: block;
+  color: var(--gold-light);
+  font-size: 30px;
+  font-weight: normal;
+}
+
+.count-box small {
+  display: block;
+  margin-top: 7px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ===================================
+   5. RSVP FORM
+=================================== */
+
+.rsvp-form {
+  max-width: 530px;
+  margin: 30px auto;
+  display: grid;
+  gap: 16px;
+  text-align: left;
+}
+
+.rsvp-form label {
+  color: var(--gold-light);
+  font-size: 14px;
+}
+
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 13px;
+  color: #29100b;
+  background: #fff6e5;
+  border: 1px solid var(--gold);
+  border-radius: 0;
+}
+
+.rsvp-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.rsvp-form button {
+  justify-self: center;
+}
+
+.status {
+  text-align: center;
+  min-height: 25px;
+  color: var(--gold-light);
+  font-size: 13px;
+}
+
+.private-note {
+  color: #d7bd89;
+  font-size: 12px;
+}
+
+/* ===================================
+   6. THANK YOU
+=================================== */
+
+.thank-you {
+  padding: 85px 20px;
+  text-align: center;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      #63201b,
+      #1a0304 75%
+    );
+}
+
+.thank-you h2 {
+  color: var(--gold-light);
+  font-size: clamp(40px, 7vw, 70px);
+  font-weight: normal;
+  font-style: italic;
+}
+
+footer {
+  padding: 28px 12px;
+  text-align: center;
+  background: #100203;
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.music-button {
+  position: fixed;
+  z-index: 30;
+  right: 15px;
+  bottom: 15px;
+
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+
+  border: 1px solid var(--gold);
+  background: #210507ee;
+  color: var(--gold-light);
+  font-size: 18px;
+}
+
+@media (max-width: 620px) {
+  .details {
+    grid-template-columns: 1fr;
+    max-width: 370px;
+  }
+
+  .detail {
+    padding: 15px;
+  }
+
+  .invite-content {
+    padding: 55px 0;
+  }
+
+  .wedding-symbol {
+    width: 80px;
+    height: 80px;
+    font-size: 35px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- SCREEN 1: CURTAIN WELCOME -->
-<section class="screen active" id="opening">
-  <div class="stars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="card">
-    <div class="kicker">YOU ARE CORDIALLY INVITED</div>
-    <div class="ornament">✦ ❦ ✦</div>
-    <p>A beautiful beginning awaits</p>
-    <h1>A Royal<br>Wedding</h1>
-    <div class="line"></div>
-    <p class="small">PULL TO REVEAL OUR CELEBRATION</p>
-    <button class="pull-button" onclick="openCurtain()">
-      ✨ PULL THE ROPE ✨
+<!-- ===================================
+     WELCOME / CURTAIN SCREEN
+=================================== -->
+
+<section id="intro">
+
+  <div class="stage-light"></div>
+
+  <div class="intro-content">
+
+    <div class="eyebrow">
+      A Celebration of Love
+    </div>
+
+    <h1>You're Invited</h1>
+
+    <div class="gold-line">✧ ❧ ✧</div>
+
+    <p>
+      TOUCH &amp; PULL<br>
+      THE ROPE TO BEGIN
+    </p>
+
+    <button
+      class="btn btn-gold"
+      id="pullRope"
+      type="button">
+      PULL THE ROPE ✦
     </button>
+
+    <div class="tap-text">
+      A BEAUTIFUL BEGINNING AWAITS
+    </div>
+
   </div>
+
   <div class="curtain left"></div>
   <div class="curtain right"></div>
-  <div class="rope"></div>
+
+  <div class="rope left"></div>
+  <div class="rope right"></div>
+
 </section>
 
-<!-- SCREEN 2: BRIDAL WELCOME -->
-<section class="screen" id="welcome">
-  <div class="stars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="card">
-    <div class="kicker">WITH LOVE & BLESSINGS</div>
-    <div class="ornament">❦</div>
-    <div class="bride-art">👰🏻</div>
-    <h2 class="script">Welcome</h2>
-    <p>To our special day</p>
-    <p class="small">A NEW CHAPTER BEGINS</p>
-    <button onclick="showScreen('names')">NEXT →</button>
-  </div>
-</section>
 
-<!-- SCREEN 3: COUPLE NAMES -->
-<section class="screen" id="names">
-  <div class="stars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="card">
-    <div class="kicker">TWO HEARTS • ONE PROMISE</div>
-    <p>Together with their families</p>
-    <h1 class="script">Jagathish</h1>
-    <div class="ornament">♥</div>
-    <p class="small">WITH</p>
-    <h1 class="script">Hari Sangari</h1>
-    <div class="line"></div>
-    <p>A beautiful journey begins</p>
-    <button class="ghost" onclick="showScreen('welcome')">← BACK</button>
-    <button onclick="showScreen('date')">NEXT →</button>
-  </div>
-</section>
+<!-- ===================================
+     WEDDING INVITATION
+=================================== -->
 
-<!-- SCREEN 4: COUNTDOWN -->
-<section class="screen" id="date">
-  <div class="stars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="card">
-    <div class="kicker">SAVE THE DATE</div>
-    <div class="ornament">✦</div>
-    <h2>16 November<br>2026</h2>
-    <p>Counting down to our special day</p>
-    <div class="countdown">
-      <div><strong id="days">--</strong><span>DAYS</span></div>
-      <div><strong id="hours">--</strong><span>HOURS</span></div>
-      <div><strong id="minutes">--</strong><span>MINUTES</span></div>
-      <div><strong id="seconds">--</strong><span>SECONDS</span></div>
+<main id="invitation">
+
+  <div class="flower left">🌹🌼</div>
+  <div class="flower right">🌹🌼</div>
+
+  <div class="invite-content">
+
+    <div class="wedding-symbol">💍</div>
+
+    <div class="eyebrow">
+      With Love, Joy &amp; Blessings
     </div>
-    <p id="count-message" class="small">EVERY MOMENT BRINGS US CLOSER</p>
-    <button class="ghost" onclick="showScreen('names')">← BACK</button>
-    <button onclick="showScreen('place')">NEXT →</button>
+
+    <h2>
+      Welcome<br>
+      to Our Special Day
+    </h2>
+
+    <div class="gold-line">♥</div>
+
+    <div class="invited-text">
+      YOU ARE CORDIALLY INVITED<br>
+      TO THE WEDDING OF
+    </div>
+
+    <div class="name-card">
+
+      <div class="names" id="groomName">
+        Jagathishraj
+      </div>
+
+      <div class="ampersand">&amp;</div>
+
+      <div class="names" id="brideName">
+        Hari Sangari
+      </div>
+
+      <div class="gold-line">❧</div>
+
+      <div class="tagline">
+        Two Hearts · One Beautiful Beginning
+      </div>
+
+    </div>
+
+    <div class="details">
+
+      <div class="detail">
+        <b>WEDDING DATE</b>
+        <span id="dateText">
+          Monday, 16 November 2026
+        </span>
+      </div>
+
+      <div class="detail">
+        <b>MUHURTHAM</b>
+        <span id="timeText">
+          Time to be announced
+        </span>
+      </div>
+
+      <div class="detail">
+        <b>VENUE</b>
+        <span id="venueText">
+          Thiruvannamalai, Tamil Nadu
+        </span>
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <a
+        class="btn btn-outline"
+        id="mapButton"
+        href="https://www.google.com/maps/search/?api=1&query=Thiruvannamalai%2C%20Tamil%20Nadu"
+        target="_blank"
+        rel="noopener noreferrer">
+        OPEN MAP ↗
+      </a>
+
+      <button
+        class="btn btn-outline"
+        id="shareButton"
+        type="button">
+        SHARE INVITATION ↗
+      </button>
+
+      <button
+        class="btn btn-gold"
+        id="rsvpButton"
+        type="button">
+        RSVP &amp; SEND WISHES ♥
+      </button>
+
+    </div>
+
+    <p class="description">
+      Your presence will make our celebration even more special.
+      Join us as we begin a beautiful new chapter.
+    </p>
+
   </div>
+
+</main>
+
+
+<!-- ===================================
+     WEDDING COUNTDOWN
+=================================== -->
+
+<section class="section" id="countdownSection">
+
+  <div class="eyebrow">
+    The Day Our Forever Begins
+  </div>
+
+  <h2>Counting Every Moment</h2>
+
+  <div class="countdown" aria-live="polite">
+
+    <div class="count-box">
+      <strong id="days">--</strong>
+      <small>Days</small>
+    </div>
+
+    <div class="count-box">
+      <strong id="hours">--</strong>
+      <small>Hours</small>
+    </div>
+
+    <div class="count-box">
+      <strong id="minutes">--</strong>
+      <small>Minutes</small>
+    </div>
+
+    <div class="count-box">
+      <strong id="seconds">--</strong>
+      <small>Seconds</small>
+    </div>
+
+  </div>
+
+  <p>
+    Until Jagathishraj &amp; Hari Sangari's beautiful beginning.
+  </p>
+
 </section>
 
-<!-- SCREEN 5: LOCATION -->
-<section class="screen" id="place">
-  <div class="stars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="card">
-    <div class="kicker">THE WEDDING CELEBRATION</div>
-    <div class="ornament">❦ ✨ ❦</div>
-    <h2>Thiruvannamalai</h2>
-    <p>We would be delighted to have you<br>with us on our special day.</p>
-    <div class="line"></div>
-    <p class="small">MONDAY · 16 NOVEMBER 2026</p>
-    <button class="ghost" onclick="showScreen('date')">← BACK</button>
-    <button onclick="showScreen('invite')">NEXT →</button>
+
+<!-- ===================================
+     RSVP / GUEST INTERACTION
+=================================== -->
+
+<section class="section dark" id="rsvp">
+
+  <div class="eyebrow">
+    Your Presence Is Our Present
   </div>
+
+  <h2>RSVP &amp; Guest Wishes</h2>
+
+  <p>
+    Kindly let us know if you can join us.
+    You may also leave a blessing for the couple.
+  </p>
+
+  <form class="rsvp-form" id="rsvpForm">
+
+    <label>
+      Your Full Name *
+
+      <input
+        type="text"
+        name="guestName"
+        id="guestName"
+        maxlength="80"
+        autocomplete="name"
+        placeholder="Enter your name"
+        required>
+    </label>
+
+    <label>
+      Will You Attend? *
+
+      <select
+        name="attendance"
+        id="attendance"
+        required>
+
+        <option value="">Select your response</option>
+
+        <option value="Joyfully accepts">
+          Joyfully accepts
+        </option>
+
+        <option value="Regretfully declines">
+          Regretfully declines
+        </option>
+
+      </select>
+
+    </label>
+
+    <label>
+      Number of Guests
+
+      <select name="guestCount" id="guestCount">
+
+        <option value="1">1 guest</option>
+        <option value="2">2 guests</option>
+        <option value="3">3 guests</option>
+        <option value="4">4 guests</option>
+        <option value="5">5 guests</option>
+        <option value="6">6 guests</option>
+
+      </select>
+    </label>
+
+    <label>
+      Your Wishes / Message
+
+      <textarea
+        name="message"
+        id="guestMessage"
+        maxlength="500"
+        placeholder="Write your blessings for the couple..."></textarea>
+    </label>
+
+    <button
+      class="btn btn-gold"
+      type="submit"
+      id="submitButton">
+      SEND RSVP PRIVATELY ♥
+    </button>
+
+    <div
+      class="status"
+      id="formStatus"
+      role="status"
+      aria-live="polite">
+    </div>
+
+  </form>
+
+  <p class="private-note">
+    Your RSVP and wishes are intended for the couple's private
+    Google Sheet. Guest messages are not displayed publicly here.
+  </p>
+
 </section>
 
-<!-- SCREEN 6: FINAL INVITATION -->
-<section class="screen" id="invite">
-  <div class="stars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="card">
-    <div class="kicker">WITH OUR FAMILIES</div>
-    <div class="ornament">✦ ♥ ✦</div>
-    <p>You are lovingly invited to celebrate</p>
-    <h2 class="script">Jagathish<br>&<br>Hari Sangari</h2>
-    <div class="line"></div>
-    <p>16 November 2026</p>
-    <p>Thiruvannamalai</p>
-    <p>Your presence and blessings<br>will make our day truly special.</p>
-    <button onclick="showScreen('thanks')">NEXT →</button>
+
+<!-- ===================================
+     THANK YOU
+=================================== -->
+
+<section class="thank-you">
+
+  <div class="gold-line">✧ ♥ ✧</div>
+
+  <h2>Thank You</h2>
+
+  <p>For Being a Part of Our Journey</p>
+
+  <div class="gold-line">❧</div>
+
+  <div class="eyebrow">
+    Jagathishraj &amp; Hari Sangari
   </div>
+
 </section>
 
-<!-- SCREEN 7: THANK YOU -->
-<section class="screen" id="thanks">
-  <div class="stars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="card">
-    <div class="ornament">❦</div>
-    <h1 class="script">Thank You</h1>
-    <p>For being a part of our happiness</p>
-    <p>Your love and blessings mean so much to us.</p>
-    <div class="ornament">♥</div>
-    <p class="small">WITH LOVE · HARI SANGARI</p>
-    <button onclick="restart()">↺ START AGAIN</button>
-  </div>
-</section>
+<footer>
+  MADE WITH LOVE · TWO HEARTS · ONE BEAUTIFUL BEGINNING
+</footer>
+
+<button
+  class="music-button"
+  id="musicButton"
+  type="button"
+  aria-label="Turn ambient sound on">
+  ♫
+</button>
+
 
 <script>
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(function(s) {
-    s.classList.remove('active');
-  });
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0, 0);
+
+/* ===================================
+   WEDDING DETAILS
+=================================== */
+
+const WEDDING = {
+
+  groom: "Jagathishraj",
+
+  bride: "Hari Sangari",
+
+  dateText: "Monday, 16 November 2026",
+
+  timeText: "Time to be announced",
+
+  venue: "Thiruvannamalai, Tamil Nadu",
+
+  /*
+    Countdown is set to midnight at the start of
+    16 November 2026 in India Standard Time.
+
+    Update this when you know the exact muhurtham.
+  */
+
+  isoDate: "2026-11-16T00:00:00+05:30",
+
+  mapUrl:
+    "https://www.google.com/maps/search/?api=1&query=Thiruvannamalai%2C%20Tamil%20Nadu"
+
+};
+
+
+/* ===================================
+   GOOGLE SHEETS CONNECTION
+=================================== */
+
+/*
+  IMPORTANT:
+  After deploying your Google Apps Script,
+  paste the Web App URL ending in /exec below.
+
+  Example format:
+  https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
+*/
+
+const GOOGLE_SCRIPT_URL =
+  "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+
+/* ===================================
+   INITIALISE WEDDING DETAILS
+=================================== */
+
+const byId = id => document.getElementById(id);
+
+byId("groomName").textContent = WEDDING.groom;
+byId("brideName").textContent = WEDDING.bride;
+byId("dateText").textContent = WEDDING.dateText;
+byId("timeText").textContent = WEDDING.timeText;
+byId("venueText").textContent = WEDDING.venue;
+byId("mapButton").href = WEDDING.mapUrl;
+
+
+/* ===================================
+   CURTAIN ANIMATION
+=================================== */
+
+function revealCurtains() {
+
+  byId("intro").classList.add("opened");
+
+  window.setTimeout(() => {
+
+    byId("invitation").scrollIntoView({
+      behavior: "smooth"
+    });
+
+  }, 650);
+
+  showerPetals(24);
+
 }
 
-function openCurtain() {
-  var opening = document.getElementById('opening');
-  opening.classList.add('open');
-  setTimeout(function() {
-    showScreen('welcome');
-  }, 2900);
+byId("pullRope").addEventListener(
+  "click",
+  revealCurtains
+);
+
+
+/* ===================================
+   GOLDEN SPARKLES
+=================================== */
+
+function createSparkles() {
+
+  const intro = byId("intro");
+
+  for (let i = 0; i < 35; i++) {
+
+    const spark = document.createElement("span");
+
+    spark.className = "spark";
+
+    spark.style.left =
+      Math.random() * 100 + "%";
+
+    spark.style.top =
+      Math.random() * 100 + "%";
+
+    spark.style.animationDelay =
+      Math.random() * 2 + "s";
+
+    intro.appendChild(spark);
+
+  }
+
 }
 
-function restart() {
-  document.getElementById('opening').classList.remove('open');
-  showScreen('opening');
+createSparkles();
+
+
+/* ===================================
+   FALLING PETALS
+=================================== */
+
+function showerPetals(amount) {
+
+  const symbols = ["✿", "❀", "♥"];
+
+  for (let i = 0; i < amount; i++) {
+
+    const petal = document.createElement("span");
+
+    petal.className = "petal";
+
+    petal.textContent =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    petal.style.left =
+      Math.random() * 100 + "vw";
+
+    petal.style.color =
+      Math.random() > 0.5
+        ? "#f4c5c4"
+        : "#e9c878";
+
+    petal.style.fontSize =
+      10 + Math.random() * 14 + "px";
+
+    petal.style.setProperty(
+      "--drift",
+      Math.random() * 160 - 80 + "px"
+    );
+
+    petal.style.animationDuration =
+      4 + Math.random() * 5 + "s";
+
+    document.body.appendChild(petal);
+
+    window.setTimeout(() => {
+      petal.remove();
+    }, 10000);
+
+  }
+
 }
+
+
+/* ===================================
+   WEDDING COUNTDOWN
+=================================== */
 
 function updateCountdown() {
-  var wedding = new Date('2026-11-16T00:00:00+05:30').getTime();
-  var diff = wedding - Date.now();
 
-  if (diff <= 0) {
-    ['days','hours','minutes','seconds'].forEach(function(id) {
-      document.getElementById(id).textContent = '0';
-    });
-    document.getElementById('count-message').textContent =
-      'OUR SPECIAL DAY IS HERE!';
+  const target =
+    new Date(WEDDING.isoDate).getTime();
+
+  let remaining = target - Date.now();
+
+  if (!Number.isFinite(target)) {
     return;
   }
 
-  document.getElementById('days').textContent =
-    Math.floor(diff / 86400000);
-  document.getElementById('hours').textContent =
-    Math.floor((diff % 86400000) / 3600000);
-  document.getElementById('minutes').textContent =
-    Math.floor((diff % 3600000) / 60000);
-  document.getElementById('seconds').textContent =
-    Math.floor((diff % 60000) / 1000);
+  if (remaining <= 0) {
+
+    ["days", "hours", "minutes", "seconds"]
+      .forEach(id => {
+        byId(id).textContent = "0";
+      });
+
+    byId("countdownSection")
+      .querySelector("h2")
+      .textContent = "The Wedding Day Is Here!";
+
+    return;
+
+  }
+
+  const days =
+    Math.floor(remaining / 86400000);
+
+  remaining %= 86400000;
+
+  const hours =
+    Math.floor(remaining / 3600000);
+
+  remaining %= 3600000;
+
+  const minutes =
+    Math.floor(remaining / 60000);
+
+  const seconds =
+    Math.floor((remaining % 60000) / 1000);
+
+  byId("days").textContent = days;
+  byId("hours").textContent = hours;
+  byId("minutes").textContent = minutes;
+  byId("seconds").textContent = seconds;
+
 }
+
 updateCountdown();
-setInterval(updateCountdown, 1000);
+
+window.setInterval(updateCountdown, 1000);
+
+
+/* ===================================
+   RSVP BUTTON SCROLL
+=================================== */
+
+byId("rsvpButton").addEventListener("click", () => {
+
+  byId("rsvp").scrollIntoView({
+    behavior: "smooth"
+  });
+
+});
+
+
+/* ===================================
+   SHARE INVITATION
+=================================== */
+
+byId("shareButton").addEventListener(
+  "click",
+  async () => {
+
+    const invitationText =
+      `You're invited to the wedding of ` +
+      `${WEDDING.groom} & ${WEDDING.bride}. ` +
+      `${WEDDING.dateText} at ${WEDDING.venue}.`;
+
+    try {
+
+      if (navigator.share) {
+
+        await navigator.share({
+
+          title:
+            `${WEDDING.groom} & ${WEDDING.bride} — Wedding Invitation`,
+
+          text: invitationText,
+
+          url: location.href
+
+        });
+
+      } else if (
+        navigator.clipboard &&
+        window.isSecureContext
+      ) {
+
+        await navigator.clipboard.writeText(
+          invitationText + "\n" + location.href
+        );
+
+        alert(
+          "Invitation link copied! Share it with your family and friends."
+        );
+
+      } else {
+
+        window.prompt(
+          "Copy this invitation and website link:",
+          invitationText + "\n" + location.href
+        );
+
+      }
+
+    } catch (error) {
+
+      if (error.name !== "AbortError") {
+
+        alert(
+          "Please copy the website link from your browser and share it."
+        );
+
+      }
+
+    }
+
+  }
+);
+
+
+/* ===================================
+   PRIVATE RSVP GOOGLE SHEETS
+=================================== */
+
+byId("rsvpForm").addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+    const status = byId("formStatus");
+
+    const button = byId("submitButton");
+
+    const payload = {
+
+      guestName:
+        byId("guestName").value.trim(),
+
+      attendance:
+        byId("attendance").value,
+
+      guestCount:
+        byId("guestCount").value,
+
+      message:
+        byId("guestMessage").value.trim(),
+
+      wedding:
+        "Jagathishraj & Hari Sangari",
+
+      weddingDate:
+        "2026-11-16",
+
+      submittedAt:
+        new Date().toISOString()
+
+    };
+
+
+    if (
+      !payload.guestName ||
+      !payload.attendance
+    ) {
+
+      status.textContent =
+        "Please enter your name and attendance choice.";
+
+      return;
+
+    }
+
+
+    if (
+      GOOGLE_SCRIPT_URL ===
+      "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE"
+    ) {
+
+      status.textContent =
+        "Google Sheets is not connected yet. Add your Apps Script Web App URL.";
+
+      return;
+
+    }
+
+
+    button.disabled = true;
+
+    button.textContent = "SENDING...";
+
+    status.textContent =
+      "Sending your private RSVP...";
+
+
+    try {
+
+      const body = new URLSearchParams(payload);
+
+      /*
+        Apps Script web apps can accept URL-encoded POST requests.
+        no-cors prevents the browser from reading the response.
+
+        A successful fetch is not proof that the Sheet saved the row.
+        Test the live form and verify the response in Google Sheets.
+      */
+
+      await fetch(
+        GOOGLE_SCRIPT_URL,
+        {
+          method: "POST",
+          mode: "no-cors",
+          body: body
+        }
+      );
+
+
+      status.textContent =
+        "Thank you! Your RSVP has been submitted. Please contact the hosts if you need confirmation.";
+
+      byId("rsvpForm").reset();
+
+
+    } catch (error) {
+
+      status.textContent =
+        "Unable to send right now. Please check your internet and try again.";
+
+    } finally {
+
+      button.disabled = false;
+
+      button.textContent =
+        "SEND RSVP PRIVATELY ♥";
+
+    }
+
+  }
+);
+
+
+/* ===================================
+   OPTIONAL AMBIENT SOUND
+=================================== */
+
+let audioContext = null;
+
+let oscillator = null;
+
+let gainNode = null;
+
+let soundOn = false;
+
+
+byId("musicButton").addEventListener(
+  "click",
+  async () => {
+
+    try {
+
+      if (!soundOn) {
+
+        const AudioContextClass =
+          window.AudioContext ||
+          window.webkitAudioContext;
+
+        if (!AudioContextClass) {
+
+          alert(
+            "Ambient sound is not supported by this browser."
+          );
+
+          return;
+
+        }
+
+        audioContext =
+          audioContext || new AudioContextClass();
+
+        await audioContext.resume();
+
+        oscillator =
+          audioContext.createOscillator();
+
+        gainNode =
+          audioContext.createGain();
+
+        oscillator.type = "sine";
+
+        oscillator.frequency.value = 220;
+
+        gainNode.gain.value = 0.009;
+
+        oscillator.connect(gainNode);
+
+        gainNode.connect(audioContext.destination);
+
+        oscillator.start();
+
+        soundOn = true;
+
+        byId("musicButton").textContent = "Ⅱ";
+
+        byId("musicButton").setAttribute(
+          "aria-label",
+          "Turn ambient sound off"
+        );
+
+      } else {
+
+        if (oscillator) {
+
+          oscillator.stop();
+
+          oscillator.disconnect();
+
+          oscillator = null;
+
+        }
+
+        soundOn = false;
+
+        byId("musicButton").textContent = "♫";
+
+        byId("musicButton").setAttribute(
+          "aria-label",
+          "Turn ambient sound on"
+        );
+
+      }
+
+    } catch (error) {
+
+      alert(
+        "Sound could not start. Please try again."
+      );
+
+    }
+
+  }
+);
+
 </script>
+
 </body>
 </html>
