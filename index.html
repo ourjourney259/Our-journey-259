@@ -1,968 +1,253 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Royal Wedding Invitation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hari Sangari & Jagathish | Wedding</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap');
-
-:root {
-  --wine: #65051b;
-  --red: #970b29;
-  --deep-red: #36000d;
-  --gold: #e7c77e;
-  --light-gold: #fff0bd;
-  --cream: #fff6e8;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-body {
-  background: #190309;
-  font-family: 'Cormorant Garamond', serif;
-  color: var(--cream);
-  user-select: none;
-  -webkit-user-select: none;
-  overscroll-behavior: none;
-}
-
-/* MAIN SCREEN */
-
-.stage {
-  position: relative;
-  width: 100%;
-  height: 100dvh;
-  min-height: 500px;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse at 50% 45%,
-      #f6dca0 0%,
-      #bd7940 17%,
-      #5d1721 42%,
-      #190309 80%);
-}
-
-/* GOLDEN LIGHT BEHIND CURTAIN */
-
-.backlight {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at center,
-      rgba(255, 218, 142, .9) 0%,
-      rgba(255, 182, 82, .42) 27%,
-      rgba(70, 0, 18, .3) 65%,
-      #190309 100%);
-  opacity: 0;
-  transform: scale(.7);
-  transition: opacity 2s ease, transform 2s ease;
-}
-
-.stage.open .backlight {
-  opacity: 1;
-  transform: scale(1.2);
-}
-
-/* WELCOME CHARACTER AREA */
-
-.welcome-area {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 22px 16px;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(25px) scale(.96);
-  transition: opacity 1.5s ease 1s, transform 1.5s ease 1s;
-  pointer-events: none;
-}
-
-.stage.open .welcome-area {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.welcome-heading {
-  font-size: clamp(15px, 3vw, 21px);
-  letter-spacing: 5px;
-  color: var(--light-gold);
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  text-shadow: 0 2px 12px #3d0712;
-}
-
-/* PRINCESS DOLL ILLUSTRATION */
-
-.princess {
-  position: relative;
-  width: clamp(170px, 42vw, 250px);
-  height: clamp(265px, 48vh, 350px);
-  flex-shrink: 0;
-  transform-origin: 50% 90%;
-  animation: princessAppear 1.4s ease both;
-  filter: drop-shadow(0 12px 22px rgba(35, 0, 8, .35));
-}
-
-.stage:not(.open) .princess {
-  animation: none;
-}
-
-@keyframes princessAppear {
-  0% { opacity: 0; transform: translateY(35px) scale(.88); }
-  70% { opacity: 1; transform: translateY(-5px) scale(1.02); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* HAIR */
-
-.hair-back {
-  position: absolute;
-  z-index: 2;
-  top: 34px;
-  left: 50%;
-  width: 116px;
-  height: 133px;
-  transform: translateX(-50%);
-  background: linear-gradient(90deg, #30100b, #6b321b 40%, #3b130d);
-  border-radius: 48% 48% 42% 42%;
-  box-shadow: inset 7px 0 8px rgba(0,0,0,.25);
-}
-
-.hair-side {
-  position: absolute;
-  top: 73px;
-  width: 32px;
-  height: 100px;
-  z-index: 5;
-  background: linear-gradient(90deg, #32100d, #77401f, #32100d);
-  border-radius: 40% 40% 50% 50%;
-}
-
-.hair-side.left {
-  left: 42px;
-  transform: rotate(5deg);
-}
-
-.hair-side.right {
-  right: 42px;
-  transform: rotate(-5deg);
-}
-
-/* CROWN */
-
-.crown {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  z-index: 10;
-  width: 86px;
-  height: 42px;
-  transform: translateX(-50%);
-  background: linear-gradient(135deg, #fff0b0, #c18b35 45%, #ffe9a0);
-  clip-path: polygon(0 100%, 8% 12%, 30% 55%, 50% 0, 70% 55%, 92% 12%, 100% 100%);
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
-}
-
-.crown-band {
-  position: absolute;
-  top: 45px;
-  left: 50%;
-  z-index: 11;
-  width: 87px;
-  height: 9px;
-  transform: translateX(-50%);
-  border-radius: 3px;
-  background: linear-gradient(#fff0b8, #c18b35);
-}
-
-.crown-jewel {
-  position: absolute;
-  top: 25px;
-  left: 50%;
-  z-index: 12;
-  transform: translateX(-50%);
-  width: 11px;
-  height: 14px;
-  background: #a30d32;
-  border: 2px solid #fff0b8;
-  border-radius: 50%;
-}
-
-/* FACE */
-
-.face {
-  position: absolute;
-  z-index: 4;
-  top: 43px;
-  left: 50%;
-  width: 79px;
-  height: 101px;
-  transform: translateX(-50%);
-  border-radius: 43% 43% 48% 48%;
-  background: linear-gradient(100deg, #d99b72, #f5c9a3 48%, #d99b72);
-  box-shadow: inset 3px 0 5px rgba(117, 42, 25, .15);
-}
-
-.fringe {
-  position: absolute;
-  z-index: 6;
-  top: 35px;
-  left: 50%;
-  width: 84px;
-  height: 48px;
-  transform: translateX(-50%);
-  background: linear-gradient(110deg, #32100d, #6a321b, #32100d);
-  border-radius: 50% 50% 36% 30%;
-  clip-path: polygon(0 0, 100% 0, 100% 70%, 82% 85%, 65% 65%, 48% 100%, 31% 70%, 12% 83%, 0 66%);
-}
-
-/* EYES */
-
-.eye {
-  position: absolute;
-  z-index: 7;
-  top: 83px;
-  width: 12px;
-  height: 8px;
-  background: #fff9eb;
-  border-radius: 50%;
-  border-bottom: 2px solid #492018;
-}
-
-.eye::after {
-  content: "";
-  position: absolute;
-  width: 5px;
-  height: 6px;
-  left: 4px;
-  top: 1px;
-  background: #39201a;
-  border-radius: 50%;
-}
-
-.eye.left { left: calc(50% - 23px); }
-.eye.right { right: calc(50% - 23px); }
-
-.eyebrow {
-  position: absolute;
-  z-index: 7;
-  top: 76px;
-  width: 17px;
-  height: 5px;
-  border-top: 2px solid #62351f;
-  border-radius: 50%;
-}
-
-.eyebrow.left { left: calc(50% - 26px); transform: rotate(-7deg); }
-.eyebrow.right { right: calc(50% - 26px); transform: rotate(7deg); }
-
-.nose {
-  position: absolute;
-  z-index: 7;
-  top: 91px;
-  left: 50%;
-  width: 8px;
-  height: 12px;
-  transform: translateX(-50%);
-  border-right: 1px solid rgba(143, 73, 48, .6);
-  border-radius: 50%;
-}
-
-.cheek {
-  position: absolute;
-  z-index: 7;
-  top: 100px;
-  width: 15px;
-  height: 8px;
-  background: rgba(220, 91, 98, .27);
-  border-radius: 50%;
-}
-
-.cheek.left { left: calc(50% - 33px); }
-.cheek.right { right: calc(50% - 33px); }
-
-.mouth {
-  position: absolute;
-  z-index: 7;
-  top: 113px;
-  left: 50%;
-  width: 19px;
-  height: 9px;
-  transform: translateX(-50%);
-  border-bottom: 2px solid #a83d4b;
-  border-radius: 0 0 50% 50%;
-}
-
-/* NECK AND GOWN */
-
-.neck {
-  position: absolute;
-  z-index: 3;
-  top: 132px;
-  left: 50%;
-  width: 25px;
-  height: 31px;
-  transform: translateX(-50%);
-  background: linear-gradient(90deg, #c98860, #f0bd93, #c98860);
-}
-
-.gown {
-  position: absolute;
-  z-index: 4;
-  top: 150px;
-  left: 50%;
-  width: 188px;
-  height: 170px;
-  transform: translateX(-50%);
-  background: linear-gradient(100deg, #570016, #a40b2c 35%, #7e061f 70%, #43000f);
-  clip-path: polygon(37% 0, 63% 0, 77% 15%, 100% 100%, 0 100%, 23% 15%);
-  border-radius: 20px 20px 0 0;
-  box-shadow: inset 10px 0 15px rgba(0,0,0,.2);
-}
-
-.gown-panel {
-  position: absolute;
-  z-index: 5;
-  top: 158px;
-  left: 50%;
-  width: 64px;
-  height: 150px;
-  transform: translateX(-50%);
-  background: linear-gradient(90deg, #b98a37, #f7df9c, #c0913e);
-  clip-path: polygon(35% 0, 65% 0, 100% 100%, 0 100%);
-  opacity: .85;
-}
-
-.gown-neckline {
-  position: absolute;
-  z-index: 6;
-  top: 151px;
-  left: 50%;
-  width: 73px;
-  height: 30px;
-  transform: translateX(-50%);
-  background: linear-gradient(#fff0b0, #c08c39);
-  clip-path: polygon(0 0, 50% 75%, 100% 0, 78% 100%, 22% 100%);
-}
-
-.waist-jewel {
-  position: absolute;
-  z-index: 7;
-  top: 205px;
-  left: 50%;
-  width: 14px;
-  height: 18px;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #fff8d0, #c08c39 70%);
-  border: 1px solid #f9e5a4;
-}
-
-.sleeve {
-  position: absolute;
-  z-index: 3;
-  top: 163px;
-  width: 49px;
-  height: 69px;
-  background: linear-gradient(90deg, #610018, #a70d30, #650019);
-  border-radius: 35% 35% 50% 50%;
-}
-
-.sleeve.left {
-  left: 29px;
-  transform: rotate(24deg);
-}
-
-.sleeve.right {
-  right: 29px;
-  transform: rotate(-24deg);
-}
-
-.arm {
-  position: absolute;
-  z-index: 4;
-  top: 197px;
-  width: 16px;
-  height: 58px;
-  border-radius: 20px;
-  background: linear-gradient(90deg, #d3956d, #f4c29b, #d3956d);
-}
-
-.arm.left {
-  left: 46px;
-  transform: rotate(20deg);
-}
-
-.arm.right {
-  right: 46px;
-  transform-origin: top center;
-  animation: royalWave 2.4s ease-in-out infinite;
-}
-
-@keyframes royalWave {
-  0%, 100% { transform: rotate(-32deg); }
-  50% { transform: rotate(-65deg); }
-}
-
-/* CURTAIN FRAME */
-
-.curtain-frame {
-  position: absolute;
-  z-index: 20;
-  inset: 0;
-  pointer-events: none;
-}
-
-/* TOP VALANCE */
-
-.valance {
-  position: absolute;
-  z-index: 23;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 94px;
-  background:
-    repeating-linear-gradient(90deg,
-      rgba(255,255,255,.035) 0px,
-      rgba(255,255,255,.035) 5px,
-      transparent 13px,
-      rgba(0,0,0,.15) 22px),
-    linear-gradient(180deg, #4a0013, #a00c2c 45%, #640019 90%);
-  box-shadow: 0 8px 22px rgba(0,0,0,.5);
-  border-bottom: 3px solid #d7b46a;
-  transition: transform 1.8s cubic-bezier(.65,0,.35,1);
-}
-
-.valance::after {
-  content: "✦     ❦     ✧     ❦     ✦     ❦     ✧     ❦     ✦";
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  color: #f4d68b;
-  font-size: clamp(14px, 3vw, 25px);
-  text-shadow: 0 1px 5px #31000c;
-}
-
-.stage.open .valance {
-  transform: translateY(-110%);
-}
-
-/* LEFT AND RIGHT RED CURTAINS */
-
-.curtain {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 53%;
-  overflow: hidden;
-  background:
-    repeating-linear-gradient(90deg,
-      rgba(20,0,5,.28) 0px,
-      rgba(255,130,142,.08) 12px,
-      rgba(20,0,5,.15) 25px,
-      transparent 37px,
-      rgba(0,0,0,.18) 55px),
-    linear-gradient(90deg,
-      #3c000e 0%,
-      #85051e 13%,
-      #b21434 28%,
-      #7b0019 44%,
-      #a90a2a 63%,
-      #4c0013 100%);
-  box-shadow: inset -10px 0 20px rgba(0,0,0,.24);
-  transition: transform 2.5s cubic-bezier(.72,0,.24,1);
-  will-change: transform;
-}
-
-.curtain.left {
-  left: 0;
-  border-right: 2px solid rgba(231,199,126,.8);
-  transform-origin: left center;
-}
-
-.curtain.right {
-  right: 0;
-  border-left: 2px solid rgba(231,199,126,.8);
-  transform-origin: right center;
-  background:
-    repeating-linear-gradient(90deg,
-      rgba(20,0,5,.22) 0px,
-      rgba(255,130,142,.08) 12px,
-      rgba(20,0,5,.15) 25px,
-      transparent 37px,
-      rgba(0,0,0,.18) 55px),
-    linear-gradient(90deg,
-      #4c0013 0%,
-      #a90a2a 28%,
-      #7b0019 48%,
-      #b21434 69%,
-      #85051e 87%,
-      #3c000e 100%);
-}
-
-.curtain::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 50% 35%,
-      rgba(255, 140, 150, .13),
-      transparent 45%);
-}
-
-.curtain-ornament {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  transform: translateY(-50%);
-  text-align: center;
-  color: #e7c77e;
-  font-size: clamp(25px, 7vw, 65px);
-  line-height: 1.7;
-  text-shadow: 0 2px 7px #30000b;
-  opacity: .9;
-}
-
-.curtain-ornament span {
-  display: block;
-  font-size: clamp(13px, 3vw, 22px);
-  letter-spacing: 4px;
-}
-
-.stage.open .curtain.left {
-  transform: translateX(-105%);
-}
-
-.stage.open .curtain.right {
-  transform: translateX(105%);
-}
-
-/* GOLDEN ROPE */
-
-.rope-control {
-  position: absolute;
-  z-index: 30;
-  left: 50%;
-  top: 50%;
-  width: 90px;
-  height: 220px;
-  transform: translate(-50%, -30%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  pointer-events: auto;
-  touch-action: none;
-  cursor: grab;
-  transition: opacity .6s ease, transform .6s ease;
-}
-
-.rope-control:active {
-  cursor: grabbing;
-}
-
-.rope {
-  width: 7px;
-  height: 133px;
-  border-radius: 8px;
-  background:
-    repeating-linear-gradient(0deg,
-      #a76d27 0px,
-      #fce5a0 4px,
-      #b27a32 7px,
-      #fff0b8 10px);
-  box-shadow: 2px 0 5px rgba(0,0,0,.45);
-}
-
-.tassel {
-  position: relative;
-  width: 35px;
-  height: 61px;
-  margin-top: -3px;
-  border-radius: 40% 40% 45% 45%;
-  background:
-    repeating-linear-gradient(90deg,
-      #b17a2f 0px,
-      #fce9a4 3px,
-      #c4933e 5px);
-  box-shadow: 0 4px 12px rgba(0,0,0,.5);
-}
-
-.tassel::before {
-  content: "";
-  position: absolute;
-  top: -6px;
-  left: 50%;
-  width: 22px;
-  height: 13px;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: linear-gradient(#fff1b9, #b47b2b);
-}
-
-.tassel::after {
-  content: "";
-  position: absolute;
-  left: 5px;
-  right: 5px;
-  bottom: -10px;
-  height: 16px;
-  background: repeating-linear-gradient(90deg,
-    #d5a14b 0px, #f7e2a1 2px, #b27b2e 4px);
-  clip-path: polygon(0 0,100% 0,80% 100%,20% 100%);
-}
-
-.rope-control.dragging {
-  transform: translate(-50%, -20%) scale(1.08);
-}
-
-.rope-control.hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(-50%, 40%) scale(.6);
-}
-
-.pull-label {
-  position: absolute;
-  top: calc(100% + 15px);
-  left: 50%;
-  transform: translateX(-50%);
-  width: 230px;
-  color: #fff0bd;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 3px;
-  text-align: center;
-  text-shadow: 0 2px 7px #2c0009;
-  animation: labelGlow 2s ease-in-out infinite;
-}
-
-@keyframes labelGlow {
-  0%, 100% { opacity: .65; }
-  50% { opacity: 1; }
-}
-
-/* WELCOME TEXT */
-
-.welcome-script {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(35px, 8vw, 58px);
-  color: #fff0bd;
-  text-shadow: 0 3px 14px rgba(54,0,13,.7);
-  margin-top: 3px;
-}
-
-.welcome-subtitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(15px, 3.8vw, 22px);
-  letter-spacing: 2px;
-  color: #fff8e9;
-  margin-top: 4px;
-}
-
-.gold-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 13px;
-  color: #f5d78f;
-  font-size: 16px;
-}
-
-.gold-divider::before,
-.gold-divider::after {
-  content: "";
-  width: 45px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #f5d78f);
-}
-
-.gold-divider::after {
-  transform: rotate(180deg);
-}
-
-/* SMALL GOLD PARTICLES */
-
-.particles {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 2s ease 1s;
-}
-
-.stage.open .particles {
-  opacity: 1;
-}
-
-.particle {
-  position: absolute;
-  bottom: -20px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #ffe7a1;
-  box-shadow: 0 0 10px 2px rgba(255,215,123,.45);
-  animation: floatUp linear infinite;
-}
-
-@keyframes floatUp {
-  from { transform: translateY(0) translateX(0); opacity: 0; }
-  15% { opacity: .8; }
-  85% { opacity: .7; }
-  to { transform: translateY(-110vh) translateX(30px); opacity: 0; }
-}
-
-/* SMALL SCREEN ADJUSTMENTS */
-
-@media (max-height: 620px) {
-  .welcome-area { padding-top: 45px; }
-  .princess {
-    height: 235px;
-    transform: scale(.78);
-    margin-top: -20px;
-    margin-bottom: -25px;
-  }
-  .welcome-heading { margin-bottom: 0; }
-  .welcome-script { font-size: 35px; }
-  .welcome-subtitle { font-size: 15px; }
-  .rope-control { transform: translate(-50%, -32%) scale(.82); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
-  }
-}
+*{box-sizing:border-box}
+:root{--gold:#f6d68b;--cream:#fff1d6}
+body{margin:0;background:#19040a;color:var(--cream);
+font-family:Georgia,'Times New Roman',serif}
+.screen{display:none;min-height:100svh;position:relative;
+align-items:center;justify-content:center;text-align:center;
+padding:28px 18px;overflow:hidden;
+background:radial-gradient(ellipse,#65202b,#300711 65%,#150308)}
+.screen.active{display:flex;animation:fade .8s ease}
+.card{width:100%;max-width:480px;padding:28px 20px;
+border:1px solid #d7b568;outline:1px solid #79552e;
+outline-offset:5px;background:rgba(25,4,10,.48);z-index:2}
+.kicker{font-size:11px;letter-spacing:4px;color:var(--gold);line-height:2}
+h1{font-size:clamp(37px,10vw,58px);font-weight:normal;
+color:var(--gold);line-height:1.15;margin:18px 0}
+h2{font-size:clamp(29px,8vw,44px);font-weight:normal;
+color:var(--gold);margin:18px 0}
+p{font-size:16px;line-height:1.8}
+.script{font-style:italic;text-shadow:0 0 12px #e9bd6b}
+.ornament{color:var(--gold);font-size:26px;margin:16px}
+.line{height:1px;width:100px;background:var(--gold);margin:20px auto}
+button{font-family:inherit;font-size:12px;letter-spacing:1.5px;
+padding:14px 19px;min-height:48px;margin:8px 4px;
+border:1px solid var(--gold);background:linear-gradient(135deg,#ffe9b1,#bc883e);
+color:#3a0b12;cursor:pointer}
+button:focus-visible{outline:3px solid white}
+button.ghost{background:transparent;color:var(--gold)}
+.stars{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.stars i{position:absolute;width:3px;height:3px;border-radius:50%;
+background:#ffe8a1;box-shadow:0 0 10px 3px #e9ad52;
+animation:twinkle 2s infinite alternate}
+.stars i:nth-child(1){left:12%;top:20%}
+.stars i:nth-child(2){left:80%;top:18%;animation-delay:.4s}
+.stars i:nth-child(3){left:25%;top:75%;animation-delay:.7s}
+.stars i:nth-child(4){left:88%;top:65%;animation-delay:1s}
+.stars i:nth-child(5){left:50%;top:12%;animation-delay:.2s}
+.stars i:nth-child(6){left:70%;top:85%;animation-delay:.9s}
+.stars i:nth-child(7){left:8%;top:50%;animation-delay:.6s}
+.stars i:nth-child(8){left:40%;top:88%;animation-delay:1.2s}
+
+/* ROYAL CURTAINS */
+.curtain{position:absolute;z-index:4;top:0;bottom:0;width:52%;
+pointer-events:none;transition:transform 2.2s cubic-bezier(.65,0,.25,1);
+background:
+repeating-linear-gradient(90deg,rgba(20,0,5,.5) 0 7px,
+rgba(177,40,52,.35) 12px,transparent 22px),
+linear-gradient(90deg,#27030b,#8e172b 28%,#590a1b 68%,#31040d);
+box-shadow:inset 0 0 45px #150207,0 0 20px #120208}
+.curtain.left{left:0;border-right:2px solid #cda456}
+.curtain.right{right:0;border-left:2px solid #cda456}
+#opening.open .curtain.left{transform:translateX(-103%)}
+#opening.open .curtain.right{transform:translateX(103%)}
+#opening .card{opacity:0;transition:opacity .8s 1.5s}
+#opening.open .card{opacity:1}
+#opening .pull-button{position:relative;z-index:6}
+#opening.open .pull-button{display:none}
+.rope{position:absolute;z-index:5;right:10%;top:38%;height:150px;
+width:3px;background:linear-gradient(90deg,#8b612e,#ffe5a0,#8b612e);
+transform-origin:top;pointer-events:none}
+.rope:after{content:"";position:absolute;bottom:-12px;left:-7px;
+width:15px;height:18px;border-radius:45% 45% 60% 60%;
+background:linear-gradient(90deg,#9b7136,#ffe6a0,#986c2d)}
+#opening.open .rope{animation:pull .7s ease-in forwards}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:22px 0}
+.countdown div{border:1px solid #b99452;padding:12px 2px;background:#26060d}
+.countdown strong{display:block;color:var(--gold);font-size:clamp(21px,5vw,29px)}
+.countdown span{font-size:9px;letter-spacing:1px}
+.bride-art{font-size:72px;filter:drop-shadow(0 0 18px #e5b66a)}
+.small{font-size:12px;letter-spacing:1px}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes twinkle{from{opacity:.2;transform:scale(.7)}to{opacity:1;transform:scale(1.5)}}
+@keyframes pull{0%{transform:rotate(0)}35%{transform:rotate(-22deg)}
+70%{transform:rotate(15deg)}100%{transform:rotate(-8deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{
+animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
 
 <body>
 
-<main class="stage" id="stage">
-
-  <div class="backlight"></div>
-
-  <div class="particles" id="particles"></div>
-
-  <!-- ROYAL GIRL WELCOME -->
-  <section class="welcome-area" aria-label="Royal welcome">
-
-    <div class="welcome-heading">A Royal Invitation</div>
-
-    <div class="princess" aria-label="Royal princess illustration">
-
-      <div class="hair-back"></div>
-      <div class="hair-side left"></div>
-      <div class="hair-side right"></div>
-
-      <div class="crown"></div>
-      <div class="crown-band"></div>
-      <div class="crown-jewel"></div>
-
-      <div class="face"></div>
-      <div class="fringe"></div>
-
-      <div class="eyebrow left"></div>
-      <div class="eyebrow right"></div>
-
-      <div class="eye left"></div>
-      <div class="eye right"></div>
-
-      <div class="nose"></div>
-      <div class="cheek left"></div>
-      <div class="cheek right"></div>
-      <div class="mouth"></div>
-
-      <div class="neck"></div>
-
-      <div class="sleeve left"></div>
-      <div class="sleeve right"></div>
-
-      <div class="gown"></div>
-      <div class="gown-panel"></div>
-      <div class="gown-neckline"></div>
-      <div class="waist-jewel"></div>
-
-      <div class="arm left"></div>
-      <div class="arm right"></div>
-
-    </div>
-
-    <div class="welcome-script">Welcome, Dear Guest</div>
-
-    <div class="gold-divider">✦</div>
-
-    <p class="welcome-subtitle">
-      A Royal Celebration Awaits You
-    </p>
-
-  </section>
-
-  <!-- CURTAIN AND GOLD DETAILS -->
-  <div class="curtain-frame" id="curtainFrame">
-
-    <div class="valance"></div>
-
-    <div class="curtain left">
-      <div class="curtain-ornament">
-        ❦
-        <span>ROYAL</span>
-        ✧
-      </div>
-    </div>
-
-    <div class="curtain right">
-      <div class="curtain-ornament">
-        ❦
-        <span>CELEBRATION</span>
-        ✧
-      </div>
-    </div>
-
-    <!-- DRAG THIS GOLDEN ROPE -->
-    <div
-      class="rope-control"
-      id="ropeControl"
-      role="button"
-      tabindex="0"
-      aria-label="Pull the golden rope to open the curtain"
-    >
-      <div class="rope"></div>
-      <div class="tassel"></div>
-      <div class="pull-label">PULL THE ROPE TO ENTER</div>
-    </div>
-
+<!-- SCREEN 1: CURTAIN WELCOME -->
+<section class="screen active" id="opening">
+  <div class="stars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="card">
+    <div class="kicker">YOU ARE CORDIALLY INVITED</div>
+    <div class="ornament">✦ ❦ ✦</div>
+    <p>A beautiful beginning awaits</p>
+    <h1>A Royal<br>Wedding</h1>
+    <div class="line"></div>
+    <p class="small">PULL TO REVEAL OUR CELEBRATION</p>
+    <button class="pull-button" onclick="openCurtain()">
+      ✨ PULL THE ROPE ✨
+    </button>
   </div>
+  <div class="curtain left"></div>
+  <div class="curtain right"></div>
+  <div class="rope"></div>
+</section>
 
-</main>
+<!-- SCREEN 2: BRIDAL WELCOME -->
+<section class="screen" id="welcome">
+  <div class="stars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="card">
+    <div class="kicker">WITH LOVE & BLESSINGS</div>
+    <div class="ornament">❦</div>
+    <div class="bride-art">👰🏻</div>
+    <h2 class="script">Welcome</h2>
+    <p>To our special day</p>
+    <p class="small">A NEW CHAPTER BEGINS</p>
+    <button onclick="showScreen('names')">NEXT →</button>
+  </div>
+</section>
+
+<!-- SCREEN 3: COUPLE NAMES -->
+<section class="screen" id="names">
+  <div class="stars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="card">
+    <div class="kicker">TWO HEARTS • ONE PROMISE</div>
+    <p>Together with their families</p>
+    <h1 class="script">Jagathish</h1>
+    <div class="ornament">♥</div>
+    <p class="small">WITH</p>
+    <h1 class="script">Hari Sangari</h1>
+    <div class="line"></div>
+    <p>A beautiful journey begins</p>
+    <button class="ghost" onclick="showScreen('welcome')">← BACK</button>
+    <button onclick="showScreen('date')">NEXT →</button>
+  </div>
+</section>
+
+<!-- SCREEN 4: COUNTDOWN -->
+<section class="screen" id="date">
+  <div class="stars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="card">
+    <div class="kicker">SAVE THE DATE</div>
+    <div class="ornament">✦</div>
+    <h2>16 November<br>2026</h2>
+    <p>Counting down to our special day</p>
+    <div class="countdown">
+      <div><strong id="days">--</strong><span>DAYS</span></div>
+      <div><strong id="hours">--</strong><span>HOURS</span></div>
+      <div><strong id="minutes">--</strong><span>MINUTES</span></div>
+      <div><strong id="seconds">--</strong><span>SECONDS</span></div>
+    </div>
+    <p id="count-message" class="small">EVERY MOMENT BRINGS US CLOSER</p>
+    <button class="ghost" onclick="showScreen('names')">← BACK</button>
+    <button onclick="showScreen('place')">NEXT →</button>
+  </div>
+</section>
+
+<!-- SCREEN 5: LOCATION -->
+<section class="screen" id="place">
+  <div class="stars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="card">
+    <div class="kicker">THE WEDDING CELEBRATION</div>
+    <div class="ornament">❦ ✨ ❦</div>
+    <h2>Thiruvannamalai</h2>
+    <p>We would be delighted to have you<br>with us on our special day.</p>
+    <div class="line"></div>
+    <p class="small">MONDAY · 16 NOVEMBER 2026</p>
+    <button class="ghost" onclick="showScreen('date')">← BACK</button>
+    <button onclick="showScreen('invite')">NEXT →</button>
+  </div>
+</section>
+
+<!-- SCREEN 6: FINAL INVITATION -->
+<section class="screen" id="invite">
+  <div class="stars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="card">
+    <div class="kicker">WITH OUR FAMILIES</div>
+    <div class="ornament">✦ ♥ ✦</div>
+    <p>You are lovingly invited to celebrate</p>
+    <h2 class="script">Jagathish<br>&<br>Hari Sangari</h2>
+    <div class="line"></div>
+    <p>16 November 2026</p>
+    <p>Thiruvannamalai</p>
+    <p>Your presence and blessings<br>will make our day truly special.</p>
+    <button onclick="showScreen('thanks')">NEXT →</button>
+  </div>
+</section>
+
+<!-- SCREEN 7: THANK YOU -->
+<section class="screen" id="thanks">
+  <div class="stars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="card">
+    <div class="ornament">❦</div>
+    <h1 class="script">Thank You</h1>
+    <p>For being a part of our happiness</p>
+    <p>Your love and blessings mean so much to us.</p>
+    <div class="ornament">♥</div>
+    <p class="small">WITH LOVE · HARI SANGARI</p>
+    <button onclick="restart()">↺ START AGAIN</button>
+  </div>
+</section>
 
 <script>
-const stage = document.getElementById("stage");
-const ropeControl = document.getElementById("ropeControl");
-const curtainFrame = document.getElementById("curtainFrame");
-const particles = document.getElementById("particles");
-
-let dragging = false;
-let startY = 0;
-let movedY = 0;
-let opened = false;
-
-const pullDistance = 105;
-
-/* CREATE SUBTLE GOLD PARTICLES */
-
-for (let i = 0; i < 28; i++) {
-  const particle = document.createElement("span");
-  particle.className = "particle";
-  particle.style.left = Math.random() * 100 + "%";
-  particle.style.animationDuration = (5 + Math.random() * 8) + "s";
-  particle.style.animationDelay = (Math.random() * 8) + "s";
-  particle.style.opacity = 0.3 + Math.random() * 0.6;
-  particle.style.width = (2 + Math.random() * 3) + "px";
-  particle.style.height = particle.style.width;
-  particles.appendChild(particle);
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s) {
+    s.classList.remove('active');
+  });
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
 }
-
-/* BEGIN REAL DRAG INTERACTION */
-
-ropeControl.addEventListener("pointerdown", function(event) {
-  if (opened) return;
-
-  dragging = true;
-  startY = event.clientY;
-  movedY = 0;
-
-  ropeControl.classList.add("dragging");
-
-  try {
-    ropeControl.setPointerCapture(event.pointerId);
-  } catch (error) {}
-
-  event.preventDefault();
-});
-
-ropeControl.addEventListener("pointermove", function(event) {
-  if (!dragging || opened) return;
-
-  movedY = Math.max(0, event.clientY - startY);
-
-  const limitedMovement = Math.min(movedY, 145);
-
-  ropeControl.style.marginTop = limitedMovement + "px";
-
-  if (movedY >= pullDistance) {
-    openCurtain();
-  }
-});
-
-function finishDragging() {
-  if (!dragging) return;
-
-  dragging = false;
-  ropeControl.classList.remove("dragging");
-
-  if (!opened) {
-    ropeControl.style.marginTop = "0px";
-  }
-}
-
-ropeControl.addEventListener("pointerup", finishDragging);
-ropeControl.addEventListener("pointercancel", finishDragging);
-ropeControl.addEventListener("lostpointercapture", function() {
-  dragging = false;
-  ropeControl.classList.remove("dragging");
-});
-
-/* KEYBOARD ACCESS */
-
-ropeControl.addEventListener("keydown", function(event) {
-  if ((event.key === "Enter" || event.key === " ") && !opened) {
-    event.preventDefault();
-    openCurtain();
-  }
-});
-
-/* OPEN THE CURTAIN */
 
 function openCurtain() {
-  if (opened) return;
-
-  opened = true;
-  dragging = false;
-
-  ropeControl.classList.remove("dragging");
-  ropeControl.classList.add("hidden");
-
-  stage.classList.add("open");
-
-  // Remove the curtain interaction after opening.
+  var opening = document.getElementById('opening');
+  opening.classList.add('open');
   setTimeout(function() {
-    curtainFrame.style.pointerEvents = "none";
-  }, 2600);
+    showScreen('welcome');
+  }, 2900);
 }
-</script>
 
+function restart() {
+  document.getElementById('opening').classList.remove('open');
+  showScreen('opening');
+}
+
+function updateCountdown() {
+  var wedding = new Date('2026-11-16T00:00:00+05:30').getTime();
+  var diff = wedding - Date.now();
+
+  if (diff <= 0) {
+    ['days','hours','minutes','seconds'].forEach(function(id) {
+      document.getElementById(id).textContent = '0';
+    });
+    document.getElementById('count-message').textContent =
+      'OUR SPECIAL DAY IS HERE!';
+    return;
+  }
+
+  document.getElementById('days').textContent =
+    Math.floor(diff / 86400000);
+  document.getElementById('hours').textContent =
+    Math.floor((diff % 86400000) / 3600000);
+  document.getElementById('minutes').textContent =
+    Math.floor((diff % 3600000) / 60000);
+  document.getElementById('seconds').textContent =
+    Math.floor((diff % 60000) / 1000);
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
 </body>
 </html>
