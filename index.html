@@ -31,15 +31,11 @@ body {
   font-family: Georgia, "Times New Roman", serif;
 }
 
-button,
-input,
-select,
-textarea {
+button, input, select, textarea {
   font: inherit;
 }
 
-button,
-a {
+button, a {
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -104,36 +100,34 @@ textarea:focus-visible {
   color: var(--gold-light);
 }
 
-/* ===================================
-   1. WELCOME SCREEN & CURTAIN
-=================================== */
+/* =================================
+   INTERACTIVE CURTAIN INTRO
+================================= */
 
 #intro {
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
+  height: 100svh;
+  min-height: 520px;
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(
-      ellipse at center,
+    radial-gradient(ellipse at center,
       #741d1d 0%,
       #3d080b 50%,
-      #140203 100%
-    );
+      #140203 100%);
+  touch-action: pan-y;
 }
 
 .stage-light {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(
-      ellipse at center,
+    radial-gradient(ellipse at center,
       #ffd16c44,
-      transparent 45%
-    );
+      transparent 48%);
   pointer-events: none;
 }
+
+/* Luxury curtains */
 
 .curtain {
   position: absolute;
@@ -142,7 +136,6 @@ textarea:focus-visible {
   bottom: 0;
   width: 51%;
   border-bottom: 7px solid #93672f;
-
   background:
     repeating-linear-gradient(
       90deg,
@@ -153,16 +146,25 @@ textarea:focus-visible {
       #680b14 45%,
       #290306 55%
     );
-
   box-shadow:
     inset 0 0 35px #000,
     0 0 30px #0008;
-
   transition:
-    transform 2s cubic-bezier(.72, 0, .15, 1);
+    transform 1.8s cubic-bezier(.72, 0, .15, 1);
 }
 
-.curtain::after {
+.curtain.left {
+  left: 0;
+  border-right: 2px solid var(--gold);
+}
+
+.curtain.right {
+  right: 0;
+  border-left: 2px solid var(--gold);
+}
+
+.curtain.left::after,
+.curtain.right::after {
   content: "";
   position: absolute;
   top: 0;
@@ -176,23 +178,15 @@ textarea:focus-visible {
   );
 }
 
-.curtain.left {
-  left: 0;
-  border-right: 2px solid var(--gold);
-}
-
 .curtain.left::after {
   right: 0;
-}
-
-.curtain.right {
-  right: 0;
-  border-left: 2px solid var(--gold);
 }
 
 .curtain.right::after {
   left: 0;
 }
+
+/* Curtain opens */
 
 #intro.opened .curtain.left {
   transform: translateX(-103%);
@@ -202,38 +196,53 @@ textarea:focus-visible {
   transform: translateX(103%);
 }
 
+/* Rope touch and drag area */
+
+.rope-wrap {
+  position: absolute;
+  z-index: 5;
+  top: 15%;
+  width: 64px;
+  height: 46%;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.rope-wrap.left {
+  left: calc(9% - 30px);
+}
+
+.rope-wrap.right {
+  right: calc(9% - 30px);
+}
+
+.rope-wrap:active {
+  cursor: grabbing;
+}
+
 .rope {
   position: absolute;
-  z-index: 4;
-  top: 18%;
-  height: 38%;
+  top: 0;
+  left: 31px;
   width: 3px;
-
+  height: 100%;
   background: linear-gradient(
     90deg,
     #8c5c23,
     #ffe6a3,
     #8c5c23
   );
-
-  transition: opacity .4s;
+  box-shadow: 0 0 8px #d5ad6544;
 }
 
-.rope.left {
-  left: 9%;
-}
-
-.rope.right {
-  right: 9%;
-}
-
-.rope::after {
-  content: "";
+.rope-handle {
   position: absolute;
-  bottom: -5px;
-  left: -8px;
-  width: 19px;
-  height: 30px;
+  left: 19px;
+  bottom: -10px;
+  width: 27px;
+  height: 37px;
   border-radius: 45%;
   background: linear-gradient(
     90deg,
@@ -241,50 +250,61 @@ textarea:focus-visible {
     #ffdf93,
     #87551c
   );
+  border: 1px solid #f6d58e;
+  box-shadow: 0 0 15px #d5ad6566;
 }
 
-#intro.opened .rope {
-  opacity: 0;
+.rope-handle::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  width: 11px;
+  height: 19px;
+  border-radius: 50%;
+  border: 1px solid #fff0bc88;
 }
 
-.intro-content {
-  position: relative;
-  z-index: 3;
+/* Instruction at bottom */
+
+.rope-hint {
+  position: absolute;
+  z-index: 4;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
   text-align: center;
-  padding: 25px;
-  width: min(650px, 90%);
-  transition: opacity .5s;
-}
-
-.intro-content h1 {
   color: var(--gold-light);
-  font-size: clamp(40px, 8vw, 75px);
-  font-weight: normal;
-  margin: 20px 0;
-  text-shadow: 0 0 25px #ffcc6a55;
+  pointer-events: none;
+  transition: opacity .4s;
 }
 
-.intro-content p {
-  line-height: 2;
-  letter-spacing: 3px;
-  font-size: 12px;
+.rope-hint span {
+  display: inline-block;
+  font-size: 26px;
+  animation: ropeHint 1s infinite alternate;
 }
 
-.tap-text {
-  color: var(--gold-light);
+.rope-hint p {
+  margin-top: 8px;
   font-size: 10px;
   letter-spacing: 3px;
-  margin-top: 20px;
 }
 
-#intro.opened .intro-content {
+@keyframes ropeHint {
+  from { transform: translateY(-3px); }
+  to { transform: translateY(7px); }
+}
+
+#intro.opened .rope-hint,
+#intro.opened .rope-wrap {
   opacity: 0;
   pointer-events: none;
+  transition: opacity .4s;
 }
 
-/* ===================================
-   2. GOLDEN PARTICLES
-=================================== */
+/* Golden sparkles */
 
 .spark {
   position: absolute;
@@ -302,12 +322,13 @@ textarea:focus-visible {
     opacity: .2;
     transform: scale(.6);
   }
-
   to {
     opacity: 1;
     transform: scale(1.5);
   }
 }
+
+/* Falling petals */
 
 .petal {
   position: fixed;
@@ -319,34 +340,27 @@ textarea:focus-visible {
 
 @keyframes fall {
   to {
-    transform:
-      translate3d(var(--drift), 110vh, 0)
-      rotate(650deg);
+    transform: translate3d(var(--drift), 110vh, 0) rotate(650deg);
     opacity: 0;
   }
 }
 
-/* ===================================
-   3. WEDDING INVITATION
-=================================== */
+/* =================================
+   WEDDING INVITATION
+================================= */
 
 #invitation {
   min-height: 100svh;
   position: relative;
   overflow: hidden;
-
   background:
-    radial-gradient(
-      ellipse at 50% 20%,
+    radial-gradient(ellipse at 50% 20%,
       #8a3b2555,
-      transparent 50%
-    ),
-    linear-gradient(
-      145deg,
+      transparent 50%),
+    linear-gradient(145deg,
       #160304,
       #3b080b 50%,
-      #160304
-    );
+      #160304);
 }
 
 .flower {
@@ -380,19 +394,10 @@ textarea:focus-visible {
   margin: 0 auto 20px;
   border: 1px solid var(--gold);
   border-radius: 50%;
-
   display: grid;
   place-items: center;
-
   font-size: 42px;
-
-  background:
-    radial-gradient(
-      circle,
-      #ffe2a044,
-      #6b171b
-    );
-
+  background: radial-gradient(circle, #ffe2a044, #6b171b);
   box-shadow: 0 0 35px #d5a14b33;
 }
 
@@ -415,10 +420,8 @@ textarea:focus-visible {
   margin: 30px auto;
   max-width: 740px;
   padding: 30px 12px;
-
   border-top: 1px solid #d5aa5d99;
   border-bottom: 1px solid #d5aa5d99;
-
   background: #16030466;
 }
 
@@ -487,20 +490,12 @@ textarea:focus-visible {
   font-size: 14px;
 }
 
-/* ===================================
-   4. COUNTDOWN
-=================================== */
+/* Countdown */
 
 .section {
   padding: 65px 20px;
   text-align: center;
-
-  background:
-    linear-gradient(
-      140deg,
-      #210405,
-      #39080b
-    );
+  background: linear-gradient(140deg, #210405, #39080b);
 }
 
 .section.dark {
@@ -550,9 +545,7 @@ textarea:focus-visible {
   text-transform: uppercase;
 }
 
-/* ===================================
-   5. RSVP FORM
-=================================== */
+/* RSVP form */
 
 .rsvp-form {
   max-width: 530px;
@@ -601,20 +594,12 @@ textarea:focus-visible {
   font-size: 12px;
 }
 
-/* ===================================
-   6. THANK YOU
-=================================== */
+/* Thank you */
 
 .thank-you {
   padding: 85px 20px;
   text-align: center;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      #63201b,
-      #1a0304 75%
-    );
+  background: radial-gradient(ellipse at center, #63201b, #1a0304 75%);
 }
 
 .thank-you h2 {
@@ -638,11 +623,9 @@ footer {
   z-index: 30;
   right: 15px;
   bottom: 15px;
-
   width: 48px;
   height: 48px;
   border-radius: 50%;
-
   border: 1px solid var(--gold);
   background: #210507ee;
   color: var(--gold-light);
@@ -668,6 +651,14 @@ footer {
     height: 80px;
     font-size: 35px;
   }
+
+  .rope-wrap.left {
+    left: calc(7% - 30px);
+  }
+
+  .rope-wrap.right {
+    right: calc(7% - 30px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -685,54 +676,41 @@ footer {
 
 <body>
 
-<!-- ===================================
-     WELCOME / CURTAIN SCREEN
-=================================== -->
+<!-- =================================
+     FIRST SCREEN: CURTAIN ONLY
+================================= -->
 
-<section id="intro">
+<section id="intro" aria-label="Open the wedding invitation">
 
   <div class="stage-light"></div>
-
-  <div class="intro-content">
-
-    <div class="eyebrow">
-      A Celebration of Love
-    </div>
-
-    <h1>You're Invited</h1>
-
-    <div class="gold-line">✧ ❧ ✧</div>
-
-    <p>
-      TOUCH &amp; PULL<br>
-      THE ROPE TO BEGIN
-    </p>
-
-    <button
-      class="btn btn-gold"
-      id="pullRope"
-      type="button">
-      PULL THE ROPE ✦
-    </button>
-
-    <div class="tap-text">
-      A BEAUTIFUL BEGINNING AWAITS
-    </div>
-
-  </div>
 
   <div class="curtain left"></div>
   <div class="curtain right"></div>
 
-  <div class="rope left"></div>
-  <div class="rope right"></div>
+  <div class="rope-wrap left" id="leftRopeWrap"
+       role="button" tabindex="0"
+       aria-label="Pull the left golden rope to open the invitation">
+    <div class="rope"></div>
+    <div class="rope-handle"></div>
+  </div>
+
+  <div class="rope-wrap right" id="rightRopeWrap"
+       role="button" tabindex="0"
+       aria-label="Pull the right golden rope to open the invitation">
+    <div class="rope"></div>
+    <div class="rope-handle"></div>
+  </div>
+
+  <div class="rope-hint" id="ropeHint">
+    <span>↓</span>
+    <p> PULL THE ROPE TO OPEN </p>
+  </div>
 
 </section>
 
-
-<!-- ===================================
-     WEDDING INVITATION
-=================================== -->
+<!-- =================================
+     WEDDING INVITATION SCREEN
+================================= -->
 
 <main id="invitation">
 
@@ -761,15 +739,11 @@ footer {
 
     <div class="name-card">
 
-      <div class="names" id="groomName">
-        Jagathishraj
-      </div>
+      <div class="names" id="groomName">Jagathish</div>
 
       <div class="ampersand">&amp;</div>
 
-      <div class="names" id="brideName">
-        Hari Sangari
-      </div>
+      <div class="names" id="brideName">Hari Sangari</div>
 
       <div class="gold-line">❧</div>
 
@@ -783,49 +757,36 @@ footer {
 
       <div class="detail">
         <b>WEDDING DATE</b>
-        <span id="dateText">
-          Monday, 16 November 2026
-        </span>
+        <span id="dateText">Monday, 16 November 2026</span>
       </div>
 
       <div class="detail">
         <b>MUHURTHAM</b>
-        <span id="timeText">
-          Time to be announced
-        </span>
+        <span id="timeText">Time to be announced</span>
       </div>
 
       <div class="detail">
         <b>VENUE</b>
-        <span id="venueText">
-          Thiruvannamalai, Tamil Nadu
-        </span>
+        <span id="venueText">Thiruvannamalai, Tamil Nadu</span>
       </div>
 
     </div>
 
     <div class="actions">
 
-      <a
-        class="btn btn-outline"
-        id="mapButton"
-        href="https://www.google.com/maps/search/?api=1&query=Thiruvannamalai%2C%20Tamil%20Nadu"
-        target="_blank"
-        rel="noopener noreferrer">
+      <a class="btn btn-outline"
+         id="mapButton"
+         href="https://www.google.com/maps/search/?api=1&query=Thiruvannamalai%2C%20Tamil%20Nadu"
+         target="_blank"
+         rel="noopener noreferrer">
         OPEN MAP ↗
       </a>
 
-      <button
-        class="btn btn-outline"
-        id="shareButton"
-        type="button">
+      <button class="btn btn-outline" id="shareButton" type="button">
         SHARE INVITATION ↗
       </button>
 
-      <button
-        class="btn btn-gold"
-        id="rsvpButton"
-        type="button">
+      <button class="btn btn-gold" id="rsvpButton" type="button">
         RSVP &amp; SEND WISHES ♥
       </button>
 
@@ -840,20 +801,17 @@ footer {
 
 </main>
 
-
-<!-- ===================================
-     WEDDING COUNTDOWN
-=================================== -->
+<!-- =================================
+     COUNTDOWN
+================================= -->
 
 <section class="section" id="countdownSection">
 
-  <div class="eyebrow">
-    The Day Our Forever Begins
-  </div>
+  <div class="eyebrow">The Day Our Forever Begins</div>
 
   <h2>Counting Every Moment</h2>
 
-  <div class="countdown" aria-live="polite">
+  <div class="countdown" aria-live="off">
 
     <div class="count-box">
       <strong id="days">--</strong>
@@ -877,22 +835,17 @@ footer {
 
   </div>
 
-  <p>
-    Until Jagathishraj &amp; Hari Sangari's beautiful beginning.
-  </p>
+  <p>Until Jagathish &amp; Hari Sangari's beautiful beginning.</p>
 
 </section>
 
-
-<!-- ===================================
-     RSVP / GUEST INTERACTION
-=================================== -->
+<!-- =================================
+     RSVP FORM
+================================= -->
 
 <section class="section dark" id="rsvp">
 
-  <div class="eyebrow">
-    Your Presence Is Our Present
-  </div>
+  <div class="eyebrow">Your Presence Is Our Present</div>
 
   <h2>RSVP &amp; Guest Wishes</h2>
 
@@ -905,91 +858,58 @@ footer {
 
     <label>
       Your Full Name *
-
-      <input
-        type="text"
-        name="guestName"
-        id="guestName"
-        maxlength="80"
-        autocomplete="name"
-        placeholder="Enter your name"
-        required>
+      <input type="text" name="guestName" id="guestName"
+             maxlength="80" autocomplete="name"
+             placeholder="Enter your name" required>
     </label>
 
     <label>
       Will You Attend? *
-
-      <select
-        name="attendance"
-        id="attendance"
-        required>
-
+      <select name="attendance" id="attendance" required>
         <option value="">Select your response</option>
-
-        <option value="Joyfully accepts">
-          Joyfully accepts
-        </option>
-
-        <option value="Regretfully declines">
-          Regretfully declines
-        </option>
-
+        <option value="Joyfully accepts">Joyfully accepts</option>
+        <option value="Regretfully declines">Regretfully declines</option>
       </select>
-
     </label>
 
     <label>
       Number of Guests
-
       <select name="guestCount" id="guestCount">
-
         <option value="1">1 guest</option>
         <option value="2">2 guests</option>
         <option value="3">3 guests</option>
         <option value="4">4 guests</option>
         <option value="5">5 guests</option>
         <option value="6">6 guests</option>
-
       </select>
     </label>
 
     <label>
       Your Wishes / Message
-
-      <textarea
-        name="message"
-        id="guestMessage"
-        maxlength="500"
-        placeholder="Write your blessings for the couple..."></textarea>
+      <textarea name="message" id="guestMessage"
+                maxlength="500"
+                placeholder="Write your blessings for the couple..."></textarea>
     </label>
 
-    <button
-      class="btn btn-gold"
-      type="submit"
-      id="submitButton">
+    <button class="btn btn-gold" type="submit" id="submitButton">
       SEND RSVP PRIVATELY ♥
     </button>
 
-    <div
-      class="status"
-      id="formStatus"
-      role="status"
-      aria-live="polite">
-    </div>
+    <div class="status" id="formStatus"
+         role="status" aria-live="polite"></div>
 
   </form>
 
   <p class="private-note">
-    Your RSVP and wishes are intended for the couple's private
-    Google Sheet. Guest messages are not displayed publicly here.
+    Guest messages are not displayed publicly on this page.
+    Google Sheets connection must be configured for online submissions.
   </p>
 
 </section>
 
-
-<!-- ===================================
+<!-- =================================
      THANK YOU
-=================================== -->
+================================= -->
 
 <section class="thank-you">
 
@@ -1001,9 +921,7 @@ footer {
 
   <div class="gold-line">❧</div>
 
-  <div class="eyebrow">
-    Jagathishraj &amp; Hari Sangari
-  </div>
+  <div class="eyebrow">Jagathish &amp; Hari Sangari</div>
 
 </section>
 
@@ -1011,68 +929,33 @@ footer {
   MADE WITH LOVE · TWO HEARTS · ONE BEAUTIFUL BEGINNING
 </footer>
 
-<button
-  class="music-button"
-  id="musicButton"
-  type="button"
-  aria-label="Turn ambient sound on">
+<button class="music-button" id="musicButton"
+        type="button" aria-label="Turn ambient sound on">
   ♫
 </button>
 
-
 <script>
 
-/* ===================================
+/* =================================
    WEDDING DETAILS
-=================================== */
+================================= */
 
 const WEDDING = {
-
-  groom: "Jagathishraj",
-
+  groom: "Jagathish",
   bride: "Hari Sangari",
-
   dateText: "Monday, 16 November 2026",
-
   timeText: "Time to be announced",
-
   venue: "Thiruvannamalai, Tamil Nadu",
-
-  /*
-    Countdown is set to midnight at the start of
-    16 November 2026 in India Standard Time.
-
-    Update this when you know the exact muhurtham.
-  */
-
   isoDate: "2026-11-16T00:00:00+05:30",
-
-  mapUrl:
-    "https://www.google.com/maps/search/?api=1&query=Thiruvannamalai%2C%20Tamil%20Nadu"
-
+  mapUrl: "https://www.google.com/maps/search/?api=1&query=Thiruvannamalai%2C%20Tamil%20Nadu"
 };
 
-
-/* ===================================
-   GOOGLE SHEETS CONNECTION
-=================================== */
-
 /*
-  IMPORTANT:
-  After deploying your Google Apps Script,
-  paste the Web App URL ending in /exec below.
-
-  Example format:
-  https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
+  Paste your deployed Google Apps Script /exec URL here
+  to enable actual Google Sheets RSVP submissions.
 */
-
 const GOOGLE_SCRIPT_URL =
   "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
-
-
-/* ===================================
-   INITIALISE WEDDING DETAILS
-=================================== */
 
 const byId = id => document.getElementById(id);
 
@@ -1083,92 +966,45 @@ byId("timeText").textContent = WEDDING.timeText;
 byId("venueText").textContent = WEDDING.venue;
 byId("mapButton").href = WEDDING.mapUrl;
 
-
-/* ===================================
-   CURTAIN ANIMATION
-=================================== */
-
-function revealCurtains() {
-
-  byId("intro").classList.add("opened");
-
-  window.setTimeout(() => {
-
-    byId("invitation").scrollIntoView({
-      behavior: "smooth"
-    });
-
-  }, 650);
-
-  showerPetals(24);
-
-}
-
-byId("pullRope").addEventListener(
-  "click",
-  revealCurtains
-);
-
-
-/* ===================================
+/* =================================
    GOLDEN SPARKLES
-=================================== */
+================================= */
 
 function createSparkles() {
-
   const intro = byId("intro");
 
   for (let i = 0; i < 35; i++) {
-
     const spark = document.createElement("span");
-
     spark.className = "spark";
-
-    spark.style.left =
-      Math.random() * 100 + "%";
-
-    spark.style.top =
-      Math.random() * 100 + "%";
-
-    spark.style.animationDelay =
-      Math.random() * 2 + "s";
-
+    spark.style.left = Math.random() * 100 + "%";
+    spark.style.top = Math.random() * 100 + "%";
+    spark.style.animationDelay = Math.random() * 2 + "s";
     intro.appendChild(spark);
-
   }
-
 }
 
 createSparkles();
 
-
-/* ===================================
+/* =================================
    FALLING PETALS
-=================================== */
+================================= */
 
 function showerPetals(amount) {
-
   const symbols = ["✿", "❀", "♥"];
 
   for (let i = 0; i < amount; i++) {
-
     const petal = document.createElement("span");
-
     petal.className = "petal";
 
     petal.textContent =
       symbols[Math.floor(Math.random() * symbols.length)];
 
-    petal.style.left =
-      Math.random() * 100 + "vw";
+    petal.style.left = Math.random() * 100 + "vw";
 
     petal.style.color =
-      Math.random() > 0.5
-        ? "#f4c5c4"
-        : "#e9c878";
+      Math.random() > 0.5 ? "#f4c5c4" : "#e9c878";
 
-    petal.style.fontSize =
-      10 + Math.random() * 14 + "px";
+    petal.style.fontSize = 10 + Math.random() * 14 + "px";
 
     petal.style.setProperty(
       "--drift",
@@ -1180,372 +1016,342 @@ function showerPetals(amount) {
 
     document.body.appendChild(petal);
 
-    window.setTimeout(() => {
-      petal.remove();
-    }, 10000);
-
+    window.setTimeout(() => petal.remove(), 10000);
   }
-
 }
 
+/* =================================
+   INTERACTIVE ROPE PULL
+================================= */
 
-/* ===================================
+let curtainOpened = false;
+let ropeDragging = false;
+let ropeStartY = 0;
+let activePointerId = null;
+let activeRope = null;
+
+const ropeWraps = [
+  byId("leftRopeWrap"),
+  byId("rightRopeWrap")
+];
+
+function openWeddingCurtain() {
+  if (curtainOpened) return;
+
+  curtainOpened = true;
+
+  byId("intro").classList.add("opened");
+
+  ropeWraps.forEach(rope => {
+    rope.style.pointerEvents = "none";
+  });
+
+  showerPetals(30);
+
+  window.setTimeout(() => {
+    byId("invitation").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }, 1850);
+}
+
+function startRopePull(event, rope) {
+  if (curtainOpened || ropeDragging) return;
+
+  ropeDragging = true;
+  activeRope = rope;
+  activePointerId = event.pointerId;
+  ropeStartY = event.clientY;
+
+  rope.setPointerCapture(event.pointerId);
+}
+
+function moveRopePull(event, rope) {
+  if (
+    !ropeDragging ||
+    activeRope !== rope ||
+    event.pointerId !== activePointerId ||
+    curtainOpened
+  ) return;
+
+  const distance = Math.max(
+    0,
+    Math.min(180, event.clientY - ropeStartY)
+  );
+
+  rope.style.transform = `translateY(${distance}px)`;
+
+  if (distance >= 100) {
+    ropeDragging = false;
+    activeRope = null;
+    activePointerId = null;
+    openWeddingCurtain();
+  }
+}
+
+function endRopePull(event, rope) {
+  if (
+    !ropeDragging ||
+    activeRope !== rope ||
+    event.pointerId !== activePointerId
+  ) return;
+
+  ropeDragging = false;
+  activeRope = null;
+  activePointerId = null;
+
+  if (!curtainOpened) {
+    rope.style.transition = "transform .35s ease";
+    rope.style.transform = "translateY(0)";
+
+    window.setTimeout(() => {
+      rope.style.transition = "";
+    }, 350);
+  }
+}
+
+ropeWraps.forEach(rope => {
+  rope.addEventListener("pointerdown", event => {
+    startRopePull(event, rope);
+  });
+
+  rope.addEventListener("pointermove", event => {
+    moveRopePull(event, rope);
+  });
+
+  rope.addEventListener("pointerup", event => {
+    endRopePull(event, rope);
+  });
+
+  rope.addEventListener("pointercancel", event => {
+    endRopePull(event, rope);
+  });
+
+  /* Keyboard accessibility */
+  rope.addEventListener("keydown", event => {
+    if (
+      !curtainOpened &&
+      (event.key === "Enter" || event.key === " ")
+    ) {
+      event.preventDefault();
+      openWeddingCurtain();
+    }
+  });
+});
+
+/* =================================
    WEDDING COUNTDOWN
-=================================== */
+================================= */
 
 function updateCountdown() {
-
-  const target =
-    new Date(WEDDING.isoDate).getTime();
-
+  const target = new Date(WEDDING.isoDate).getTime();
   let remaining = target - Date.now();
 
-  if (!Number.isFinite(target)) {
-    return;
-  }
+  if (!Number.isFinite(target)) return;
 
   if (remaining <= 0) {
+    ["days", "hours", "minutes", "seconds"].forEach(id => {
+      byId(id).textContent = "0";
+    });
 
-    ["days", "hours", "minutes", "seconds"]
-      .forEach(id => {
-        byId(id).textContent = "0";
-      });
-
-    byId("countdownSection")
-      .querySelector("h2")
-      .textContent = "The Wedding Day Is Here!";
+    byId("countdownSection").querySelector("h2").textContent =
+      "The Wedding Day Is Here!";
 
     return;
-
   }
 
-  const days =
-    Math.floor(remaining / 86400000);
-
+  const days = Math.floor(remaining / 86400000);
   remaining %= 86400000;
 
-  const hours =
-    Math.floor(remaining / 3600000);
-
+  const hours = Math.floor(remaining / 3600000);
   remaining %= 3600000;
 
-  const minutes =
-    Math.floor(remaining / 60000);
-
-  const seconds =
-    Math.floor((remaining % 60000) / 1000);
+  const minutes = Math.floor(remaining / 60000);
+  const seconds = Math.floor((remaining % 60000) / 1000);
 
   byId("days").textContent = days;
   byId("hours").textContent = hours;
   byId("minutes").textContent = minutes;
   byId("seconds").textContent = seconds;
-
 }
 
 updateCountdown();
-
 window.setInterval(updateCountdown, 1000);
 
-
-/* ===================================
+/* =================================
    RSVP BUTTON SCROLL
-=================================== */
+================================= */
 
 byId("rsvpButton").addEventListener("click", () => {
-
   byId("rsvp").scrollIntoView({
     behavior: "smooth"
   });
-
 });
 
-
-/* ===================================
+/* =================================
    SHARE INVITATION
-=================================== */
+================================= */
 
-byId("shareButton").addEventListener(
-  "click",
-  async () => {
+byId("shareButton").addEventListener("click", async () => {
+  const invitationText =
+    `You're invited to the wedding of ${WEDDING.groom} & ${WEDDING.bride}. ` +
+    `${WEDDING.dateText} at ${WEDDING.venue}.`;
 
-    const invitationText =
-      `You're invited to the wedding of ` +
-      `${WEDDING.groom} & ${WEDDING.bride}. ` +
-      `${WEDDING.dateText} at ${WEDDING.venue}.`;
-
-    try {
-
-      if (navigator.share) {
-
-        await navigator.share({
-
-          title:
-            `${WEDDING.groom} & ${WEDDING.bride} — Wedding Invitation`,
-
-          text: invitationText,
-
-          url: location.href
-
-        });
-
-      } else if (
-        navigator.clipboard &&
-        window.isSecureContext
-      ) {
-
-        await navigator.clipboard.writeText(
-          invitationText + "\n" + location.href
-        );
-
-        alert(
-          "Invitation link copied! Share it with your family and friends."
-        );
-
-      } else {
-
-        window.prompt(
-          "Copy this invitation and website link:",
-          invitationText + "\n" + location.href
-        );
-
-      }
-
-    } catch (error) {
-
-      if (error.name !== "AbortError") {
-
-        alert(
-          "Please copy the website link from your browser and share it."
-        );
-
-      }
-
-    }
-
-  }
-);
-
-
-/* ===================================
-   PRIVATE RSVP GOOGLE SHEETS
-=================================== */
-
-byId("rsvpForm").addEventListener(
-  "submit",
-  async event => {
-
-    event.preventDefault();
-
-    const status = byId("formStatus");
-
-    const button = byId("submitButton");
-
-    const payload = {
-
-      guestName:
-        byId("guestName").value.trim(),
-
-      attendance:
-        byId("attendance").value,
-
-      guestCount:
-        byId("guestCount").value,
-
-      message:
-        byId("guestMessage").value.trim(),
-
-      wedding:
-        "Jagathishraj & Hari Sangari",
-
-      weddingDate:
-        "2026-11-16",
-
-      submittedAt:
-        new Date().toISOString()
-
-    };
-
-
-    if (
-      !payload.guestName ||
-      !payload.attendance
+  try {
+    if (navigator.share) {
+      await navigator.share({
+        title: `${WEDDING.groom} & ${WEDDING.bride} — Wedding Invitation`,
+        text: invitationText,
+        url: location.href
+      });
+    } else if (
+      navigator.clipboard &&
+      window.isSecureContext
     ) {
-
-      status.textContent =
-        "Please enter your name and attendance choice.";
-
-      return;
-
-    }
-
-
-    if (
-      GOOGLE_SCRIPT_URL ===
-      "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE"
-    ) {
-
-      status.textContent =
-        "Google Sheets is not connected yet. Add your Apps Script Web App URL.";
-
-      return;
-
-    }
-
-
-    button.disabled = true;
-
-    button.textContent = "SENDING...";
-
-    status.textContent =
-      "Sending your private RSVP...";
-
-
-    try {
-
-      const body = new URLSearchParams(payload);
-
-      /*
-        Apps Script web apps can accept URL-encoded POST requests.
-        no-cors prevents the browser from reading the response.
-
-        A successful fetch is not proof that the Sheet saved the row.
-        Test the live form and verify the response in Google Sheets.
-      */
-
-      await fetch(
-        GOOGLE_SCRIPT_URL,
-        {
-          method: "POST",
-          mode: "no-cors",
-          body: body
-        }
+      await navigator.clipboard.writeText(
+        invitationText + "\n" + location.href
       );
 
-
-      status.textContent =
-        "Thank you! Your RSVP has been submitted. Please contact the hosts if you need confirmation.";
-
-      byId("rsvpForm").reset();
-
-
-    } catch (error) {
-
-      status.textContent =
-        "Unable to send right now. Please check your internet and try again.";
-
-    } finally {
-
-      button.disabled = false;
-
-      button.textContent =
-        "SEND RSVP PRIVATELY ♥";
-
+      alert("Invitation link copied! Share it with family and friends.");
+    } else {
+      window.prompt(
+        "Copy this invitation and website link:",
+        invitationText + "\n" + location.href
+      );
     }
-
+  } catch (error) {
+    if (error.name !== "AbortError") {
+      alert("Please copy the website link from your browser and share it.");
+    }
   }
-);
+});
 
+/* =================================
+   GOOGLE SHEETS RSVP
+================================= */
 
-/* ===================================
+byId("rsvpForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const status = byId("formStatus");
+  const button = byId("submitButton");
+
+  const payload = {
+    guestName: byId("guestName").value.trim(),
+    attendance: byId("attendance").value,
+    guestCount: byId("guestCount").value,
+    message: byId("guestMessage").value.trim(),
+    wedding: `${WEDDING.groom} & ${WEDDING.bride}`,
+    weddingDate: "2026-11-16",
+    submittedAt: new Date().toISOString()
+  };
+
+  if (!payload.guestName || !payload.attendance) {
+    status.textContent =
+      "Please enter your name and attendance choice.";
+    return;
+  }
+
+  if (
+    GOOGLE_SCRIPT_URL ===
+    "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE"
+  ) {
+    status.textContent =
+      "Google Sheets is not connected yet. Add your Apps Script Web App URL.";
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "SENDING...";
+  status.textContent = "Sending your RSVP...";
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      body: new URLSearchParams(payload)
+    });
+
+    /*
+      With no-cors, the browser cannot confirm that the
+      server saved the row. Verify the submission in Sheets.
+    */
+    status.textContent =
+      "Request sent. Please contact the hosts if you need confirmation.";
+
+    byId("rsvpForm").reset();
+
+  } catch (error) {
+    status.textContent =
+      "Unable to send right now. Please check your internet and try again.";
+  } finally {
+    button.disabled = false;
+    button.textContent = "SEND RSVP PRIVATELY ♥";
+  }
+});
+
+/* =================================
    OPTIONAL AMBIENT SOUND
-=================================== */
+================================= */
 
 let audioContext = null;
-
 let oscillator = null;
-
 let gainNode = null;
-
 let soundOn = false;
 
+byId("musicButton").addEventListener("click", async () => {
+  try {
+    if (!soundOn) {
+      const AudioContextClass =
+        window.AudioContext || window.webkitAudioContext;
 
-byId("musicButton").addEventListener(
-  "click",
-  async () => {
-
-    try {
-
-      if (!soundOn) {
-
-        const AudioContextClass =
-          window.AudioContext ||
-          window.webkitAudioContext;
-
-        if (!AudioContextClass) {
-
-          alert(
-            "Ambient sound is not supported by this browser."
-          );
-
-          return;
-
-        }
-
-        audioContext =
-          audioContext || new AudioContextClass();
-
-        await audioContext.resume();
-
-        oscillator =
-          audioContext.createOscillator();
-
-        gainNode =
-          audioContext.createGain();
-
-        oscillator.type = "sine";
-
-        oscillator.frequency.value = 220;
-
-        gainNode.gain.value = 0.009;
-
-        oscillator.connect(gainNode);
-
-        gainNode.connect(audioContext.destination);
-
-        oscillator.start();
-
-        soundOn = true;
-
-        byId("musicButton").textContent = "Ⅱ";
-
-        byId("musicButton").setAttribute(
-          "aria-label",
-          "Turn ambient sound off"
-        );
-
-      } else {
-
-        if (oscillator) {
-
-          oscillator.stop();
-
-          oscillator.disconnect();
-
-          oscillator = null;
-
-        }
-
-        soundOn = false;
-
-        byId("musicButton").textContent = "♫";
-
-        byId("musicButton").setAttribute(
-          "aria-label",
-          "Turn ambient sound on"
-        );
-
+      if (!AudioContextClass) {
+        alert("Ambient sound is not supported by this browser.");
+        return;
       }
 
-    } catch (error) {
+      audioContext = audioContext || new AudioContextClass();
 
-      alert(
-        "Sound could not start. Please try again."
+      await audioContext.resume();
+
+      oscillator = audioContext.createOscillator();
+      gainNode = audioContext.createGain();
+
+      oscillator.type = "sine";
+      oscillator.frequency.value = 220;
+      gainNode.gain.value = 0.009;
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+
+      oscillator.start();
+
+      soundOn = true;
+      byId("musicButton").textContent = "Ⅱ";
+      byId("musicButton").setAttribute(
+        "aria-label",
+        "Turn ambient sound off"
       );
 
-    }
+    } else {
+      if (oscillator) {
+        oscillator.stop();
+        oscillator.disconnect();
+        oscillator = null;
+      }
 
+      soundOn = false;
+      byId("musicButton").textContent = "♫";
+      byId("musicButton").setAttribute(
+        "aria-label",
+        "Turn ambient sound on"
+      );
+    }
+  } catch (error) {
+    alert("Sound could not start. Please try again.");
   }
-);
+});
 
 </script>
 
